@@ -14,7 +14,12 @@ function Header(props: any) {
 
     return (
         <React.Fragment>
-            <AppBar color="primary" position="sticky" elevation={0}>
+            <AppBar
+                color="primary"
+                enableColorOnDark={true}
+                position="sticky"
+                elevation={0}
+            >
                 <Toolbar sx={{ pb: "8px" }}>
                     <Grid
                         container

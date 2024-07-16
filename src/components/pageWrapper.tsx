@@ -26,7 +26,6 @@ const drawerWidth = 256;
 
 const baseStyles = {
     flex: 1,
-    bgcolor: "#eaeff1",
 };
 
 const useFooterStyles = (theme: Theme) => {
