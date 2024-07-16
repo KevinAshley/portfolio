@@ -36,6 +36,8 @@ const getTheme = ({ darkMode }: { darkMode: boolean }) => {
     });
 };
 
+export type palleteModeType = "auto" | "dark" | "light";
+
 interface ThemeContextProviderIf {
     darkMode: boolean;
     paletteMode: palleteModeType;
@@ -47,8 +49,6 @@ export const ThemeContext = createContext<ThemeContextProviderIf>({
     paletteMode: "auto",
     setPaletteMode: () => {},
 });
-
-type palleteModeType = "auto" | "dark" | "light";
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");

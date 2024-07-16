@@ -8,6 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import LoginAvatar from "./loginAvatar";
+import PaletteModeSwitch from "./paletteModeSwitch";
+import { colors } from "@mui/material";
 
 function Header(props: any) {
     const { onDrawerToggle } = props;
@@ -51,7 +53,7 @@ function Header(props: any) {
                         </Grid>
                         <Grid item xs />
                         <Grid item>
-                            <LoginAvatar />
+                            <PaletteModeSwitch />
                         </Grid>
                     </Grid>
                 </Toolbar>
