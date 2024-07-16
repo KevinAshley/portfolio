@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ReactLogo, MuiLogo, NextLogo, VercelLogo } from "../components/logos";
-import Link from "next/link";
+import Link from "@mui/material/Link";
 const backgroundGradient = "rgba(0,0,0,0.7)";
 
 const Home = () => {
