@@ -2,7 +2,6 @@
 
 import { ReactNode, useState } from "react";
 // import useMediaQuery from "@mui/material/useMediaQuery";
-import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
@@ -43,7 +42,6 @@ export default function PageWrapper({ children }: { children: ReactNode }) {
 
     return (
         <Box sx={{ display: "flex", minHeight: "100vh" }}>
-            <CssBaseline />
             <Box component="nav">
                 <Navigator
                     PaperProps={{ style: { width: drawerWidth } }}

@@ -1,37 +1,32 @@
-"use client";
-import { useContext } from "react";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import BrightnessAutoIcon from "@mui/icons-material/BrightnessAuto";
-
-import { palleteModeType, ThemeContext } from "./themeProvider";
+import Button from "@mui/material/Button";
+import { useColorScheme } from "@mui/material/styles";
+import { useEffect, useState } from "react";
 
 const PaletteModeSwitch = () => {
-    const { paletteMode, setPaletteMode } = useContext(ThemeContext);
+    const { mode, setMode } = useColorScheme();
+    const [mounted, setMounted] = useState(false);
 
-    const handlePaletteModeChange = (e: any, newValue: palleteModeType) => {
-        setPaletteMode(newValue);
-    };
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return null;
+    }
 
     return (
-        <ToggleButtonGroup
-            value={paletteMode}
-            onChange={handlePaletteModeChange}
-            exclusive
-            aria-label="palette-mode"
+        <Button
+            variant="contained"
+            onClick={() => {
+                if (mode === "light") {
+                    setMode("dark");
+                } else {
+                    setMode("light");
+                }
+            }}
         >
-            <ToggleButton value="dark" aria-label="dark">
-                <Brightness4Icon />
-            </ToggleButton>
-            <ToggleButton value="auto" aria-label="auto">
-                <BrightnessAutoIcon />
-            </ToggleButton>
-            <ToggleButton value="light" aria-label="light">
-                <Brightness7Icon />
-            </ToggleButton>
-        </ToggleButtonGroup>
+            {mode === "light" ? "Dark" : "Light"}
+        </Button>
     );
 };
 
