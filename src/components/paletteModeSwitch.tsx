@@ -1,8 +1,6 @@
-import Button from "@mui/material/Button";
 import { useColorScheme } from "@mui/material/styles";
-import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import Switch, { SwitchProps } from "@mui/material/Switch";
+import Switch from "@mui/material/Switch";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 58,
