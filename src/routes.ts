@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import ScoreboardIcon from "@mui/icons-material/Scoreboard";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
+import CategoryIcon from "@mui/icons-material/Category";
 
 export const mainRoutes = [
     {
@@ -14,7 +15,7 @@ export const mainRoutes = [
     {
         label: "Portfolio",
         route: "/portfolio/",
-        icon: HomeIcon,
+        icon: CategoryIcon,
         suppress: true,
     },
 ];
