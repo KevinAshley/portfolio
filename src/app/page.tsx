@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ReactLogo, MuiLogo, NextLogo, VercelLogo } from "../components/logos";
-import Link from "@mui/material/Link";
+import RoutedLink from "@/components/routedLink";
 
 const Home = () => {
     return (
@@ -65,9 +65,9 @@ const Home = () => {
                         }}
                     >
                         Thanks for visiting my website. Check out my{" "}
-                        <Link href="/portfolio/">portfolio</Link> for examples
-                        of my work. All of the code for this website is
-                        available to review at github.
+                        <RoutedLink href="/portfolio/">portfolio</RoutedLink>{" "}
+                        for examples of my work. All of the code for this
+                        website is available to review at github.
                     </Typography>
                     <Box sx={{ mb: 5 }}>
                         {" "}
