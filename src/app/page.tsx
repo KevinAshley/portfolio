@@ -17,8 +17,7 @@ const Home = () => {
                     backgroundPosition: "bottom",
                     padding: "2rem",
                     display: "flex",
-                    borderBottom:
-                        "1px solid var(--mui-palette-background-light)",
+                    borderBottom: "1px solid var(--mui-palette-ribbon)",
                     borderCollapse: "collapse",
                 }}
             >
@@ -83,7 +82,7 @@ const Home = () => {
             </Box>
             <Box
                 sx={{
-                    background: "var(--mui-palette-background-light)",
+                    background: "var(--mui-palette-ribbon)",
                     textAlign: "center",
                     lineHeight: 0,
                     padding: "0.5rem",
