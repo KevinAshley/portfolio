@@ -4,22 +4,22 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ReactLogo, MuiLogo, NextLogo, VercelLogo } from "../components/logos";
 import Link from "@mui/material/Link";
-const backgroundGradient = "rgba(0,0,0,0.7)";
 
 const Home = () => {
     return (
         <Fragment>
             <Box
                 sx={{
-                    color: "#fff",
-                    backgroundImage: `linear-gradient(0deg, ${backgroundGradient}, ${backgroundGradient}), url(/images/pexels-photo-12027143-cropped.jpg)`,
+                    backgroundImage: `linear-gradient(0deg, var(--mui-palette-backgroundOverlayGradient), var(--mui-palette-backgroundOverlayGradient)), url(/images/pexels-photo-12027143-cropped.jpg)`,
                     width: "100%",
                     minHeight: "28vw",
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
                     padding: "2rem",
-                    textShadow: "0px 0px 5px black",
                     display: "flex",
+                    borderBottom:
+                        "1px solid var(--mui-palette-background-light)",
+                    borderCollapse: "collapse",
                 }}
             >
                 <Box
@@ -41,6 +41,8 @@ const Home = () => {
                                 xs: "2rem",
                                 lg: "3rem",
                             },
+                            textShadow:
+                                "var(--mui-palette-backgroundOverlayTextShadow)",
                         }}
                     >
                         Kevin Ashley
@@ -50,6 +52,8 @@ const Home = () => {
                         sx={{
                             fontSize: "12px",
                             marginBottom: "3rem",
+                            textShadow:
+                                "var(--mui-palette-backgroundOverlayTextShadow)",
                         }}
                     >
                         Sacramento, CA
@@ -79,7 +83,7 @@ const Home = () => {
             </Box>
             <Box
                 sx={{
-                    background: "gray",
+                    background: "var(--mui-palette-background-light)",
                     textAlign: "center",
                     lineHeight: 0,
                     padding: "0.5rem",
@@ -96,7 +100,7 @@ const Home = () => {
                     fontSize: "12px",
                     textAlign: "center",
                     padding: "10px",
-                    borderBottom: "solid rgba(0,0,0,0.1) 1px",
+                    borderBottom: "solid var(--mui-palette-border) 1px",
                 }}
             >
                 This React.js website was built with NextJS, Material UI
