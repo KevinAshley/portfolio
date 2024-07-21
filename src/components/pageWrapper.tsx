@@ -42,14 +42,12 @@ export default function PageWrapper({ children }: { children: ReactNode }) {
 
     return (
         <Box sx={{ display: "flex", minHeight: "100vh" }}>
-            <Box component="nav">
-                <Navigator
-                    PaperProps={{ style: { width: drawerWidth } }}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                />
-            </Box>
+            <Navigator
+                PaperProps={{ style: { width: drawerWidth } }}
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+            />
             <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
                 <Header onDrawerToggle={handleDrawerToggle} />
                 <Box component="main" sx={baseStyles}>
