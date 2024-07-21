@@ -9,7 +9,6 @@ import LoginAvatar from "./loginAvatar";
 import PaletteModeSwitch from "./paletteModeSwitch";
 import Navigator from "./navigator";
 import { useState } from "react";
-const drawerWidth = 256;
 
 function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -20,12 +19,7 @@ function Header() {
 
     return (
         <React.Fragment>
-            <Navigator
-                PaperProps={{ style: { width: drawerWidth } }}
-                variant="temporary"
-                open={mobileOpen}
-                onClose={handleDrawerToggle}
-            />
+            <Navigator open={mobileOpen} onClose={handleDrawerToggle} />
             <AppBar
                 color="primary"
                 enableColorOnDark={true}

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -24,25 +24,23 @@ const categories = [
     },
 ];
 
-const item = {
-    py: "2px",
-    px: 3,
-    color: "rgba(255, 255, 255, 0.7)",
-    "&:hover, &:focus": {
-        bgcolor: "rgba(255, 255, 255, 0.08)",
-    },
-};
-
 const Navigator = (props: any) => {
-    const { onClose } = props;
+    const { open, onClose } = props;
     const pathname = usePathname();
 
     return (
-        <Drawer variant="permanent" {...props}>
+        <Drawer
+            variant="temporary"
+            open={open}
+            onClose={onClose}
+            PaperProps={{ style: { width: 256 } }}
+            ModalProps={{
+                keepMounted: true,
+            }}
+        >
             <List disablePadding>
                 <ListItem
                     sx={{
-                        color: "#fff",
                         pt: "10px",
                         pb: "10px",
                         pr: "1rem",
@@ -58,7 +56,6 @@ const Navigator = (props: any) => {
                     >
                         <CloseIcon
                             sx={{
-                                color: "#fff",
                                 fontSize: "1.25rem",
                             }}
                         />
@@ -66,7 +63,7 @@ const Navigator = (props: any) => {
                 </ListItem>
 
                 {categories.map(({ id, children, href }, categoryIndex) => (
-                    <Box key={categoryIndex} sx={{ bgcolor: "#101F33" }}>
+                    <Box key={categoryIndex}>
                         {id ? (
                             <ListItem sx={{ py: 2, px: 3 }}>
                                 <ListItemButton
@@ -74,7 +71,6 @@ const Navigator = (props: any) => {
                                     href={href}
                                     onClick={onClose}
                                     sx={{
-                                        color: "#fff",
                                         padding: 0,
                                         fontSize: "14px",
                                     }}
@@ -93,7 +89,10 @@ const Navigator = (props: any) => {
                                 <ListItem disablePadding key={childId}>
                                     <ListItemButton
                                         selected={active}
-                                        sx={item}
+                                        sx={{
+                                            py: "2px",
+                                            px: 3,
+                                        }}
                                         component={Link}
                                         href={route}
                                         onClick={onClose}
