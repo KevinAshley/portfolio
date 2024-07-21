@@ -1,8 +1,9 @@
 import { useColorScheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
+import { useEffect, useState } from "react";
 
-const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+const MaterialUISwitch = styled(Switch)({
     width: 58,
     height: 30,
     padding: 7,
@@ -20,16 +21,12 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
             },
             "& + .MuiSwitch-track": {
                 opacity: 1,
-                backgroundColor:
-                    theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
+                backgroundColor: "#aab4be",
             },
         },
     },
     "& .MuiSwitch-thumb": {
-        backgroundColor:
-            theme.palette.mode === "dark"
-                ? theme.palette.primary.dark
-                : theme.palette.primary.light,
+        backgroundColor: "var(--mui-palette-primary-dark)",
         width: 28,
         height: 28,
         "&::before": {
@@ -48,13 +45,31 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
     "& .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
+        backgroundColor: "#aab4be",
         borderRadius: 20 / 2,
     },
-}));
+    "&.loading .MuiSwitch-thumb": {
+        display: "none",
+    },
+});
 
 const PaletteModeSwitch = () => {
     const { mode, setMode } = useColorScheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return (
+            <MaterialUISwitch
+                sx={{ m: 1 }}
+                className={"loading"}
+                key={"loading"}
+            />
+        );
+    }
 
     return (
         <MaterialUISwitch
@@ -67,6 +82,7 @@ const PaletteModeSwitch = () => {
                     setMode("light");
                 }
             }}
+            key={"ready"}
         />
     );
 };
