@@ -1,7 +1,5 @@
-/** @format */
-
-import * as React from "react";
-import PropTypes from "prop-types";
+"use client";
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
@@ -9,13 +7,25 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import LoginAvatar from "./loginAvatar";
 import PaletteModeSwitch from "./paletteModeSwitch";
-import { colors } from "@mui/material";
+import Navigator from "./navigator";
+import { useState } from "react";
+const drawerWidth = 256;
 
-function Header(props: any) {
-    const { onDrawerToggle } = props;
+function Header() {
+    const [mobileOpen, setMobileOpen] = useState(false);
+
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
 
     return (
         <React.Fragment>
+            <Navigator
+                PaperProps={{ style: { width: drawerWidth } }}
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+            />
             <AppBar
                 color="primary"
                 enableColorOnDark={true}
@@ -34,7 +44,7 @@ function Header(props: any) {
                             <IconButton
                                 color="inherit"
                                 aria-label="open drawer"
-                                onClick={onDrawerToggle}
+                                onClick={handleDrawerToggle}
                                 edge="start"
                             >
                                 <MenuIcon />
@@ -61,9 +71,5 @@ function Header(props: any) {
         </React.Fragment>
     );
 }
-
-Header.propTypes = {
-    onDrawerToggle: PropTypes.func.isRequired,
-};
 
 export default Header;
