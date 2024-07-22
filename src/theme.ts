@@ -1,9 +1,53 @@
 "use client";
 
-import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
+import {
+    experimental_extendTheme as extendTheme,
+    createTheme,
+} from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
 
-const theme = extendTheme({
+const baseTheme = createTheme();
+
+const theme = extendTheme(baseTheme, {
+    typography: {
+        body1: {
+            fontSize: "0.9rem",
+            [baseTheme.breakpoints.up("md")]: {
+                fontSize: "1rem",
+            },
+        },
+        h1: {
+            fontSize: "2.5rem",
+            [baseTheme.breakpoints.up("md")]: {
+                fontSize: "3rem",
+            },
+        },
+        h2: {
+            fontSize: "1.75rem",
+            [baseTheme.breakpoints.up("md")]: {
+                fontSize: "2rem",
+            },
+        },
+        h3: {
+            fontSize: "1.25rem",
+            [baseTheme.breakpoints.up("md")]: {
+                fontSize: "1.5rem",
+            },
+        },
+        h4: {
+            fontSize: "1.1rem",
+            fontWeight: 500,
+            [baseTheme.breakpoints.up("md")]: {
+                fontSize: "1.2rem",
+            },
+        },
+        caption: {
+            fontSize: "0.7rem",
+            [baseTheme.breakpoints.up("md")]: {
+                fontSize: "0.75rem",
+            },
+        },
+    },
     colorSchemes: {
         light: {
             palette: {

@@ -8,6 +8,7 @@ import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import { ReactLogo, MuiLogo, NextLogo, VercelLogo } from "../components/logos";
 import RoutedLink from "@/components/routedLink";
+import Grid from "@mui/material/Grid";
 
 const avatarImageHeight = 130;
 const avatarImageWidth = 130;
@@ -37,7 +38,14 @@ const Home = () => {
                     borderCollapse: "collapse",
                 }}
             >
-                <Box maxWidth="md" textAlign={"center"}>
+                <Box
+                    maxWidth="md"
+                    textAlign={"center"}
+                    sx={{
+                        textShadow:
+                            "var(--mui-palette-backgroundOverlayTextShadow)",
+                    }}
+                >
                     <AvatarImage
                         src="/images/kevin-gray-sky.png"
                         alt="kevin gray sky"
@@ -48,29 +56,23 @@ const Home = () => {
                         variant="h1"
                         component="h1"
                         sx={{
-                            textAlign: "center",
                             mt: 5,
                             mb: 0.5,
-                            fontSize: {
-                                xs: "2rem",
-                                lg: "3rem",
-                            },
-                            textShadow:
-                                "var(--mui-palette-backgroundOverlayTextShadow)",
                         }}
                     >
                         Kevin Ashley
                     </Typography>
+                    <Typography component="p" variant={"body1"}>
+                        Full Stack Web Developer
+                    </Typography>
                     <Typography
                         component="p"
+                        variant={"caption"}
                         sx={{
-                            fontSize: "12px",
                             textShadow:
                                 "var(--mui-palette-backgroundOverlayTextShadow)",
                         }}
                     >
-                        Full Stack Web Developer
-                        <br />
                         Sacramento, CA
                     </Typography>
                 </Box>
@@ -90,11 +92,12 @@ const Home = () => {
             </Box>
             <Typography
                 component="p"
+                variant={"caption"}
                 sx={{
-                    fontSize: "12px",
                     textAlign: "center",
                     padding: "10px",
                     borderBottom: "solid var(--mui-palette-border) 1px",
+                    marginBottom: "3rem",
                 }}
             >
                 This React.js website was built with NextJS, Material UI
@@ -108,6 +111,43 @@ const Home = () => {
                 </RoutedLink>
                 .
             </Typography>
+            <Grid
+                container
+                maxWidth="md"
+                spacing={2}
+                alignItems="center"
+                sx={{ margin: "auto" }}
+            >
+                <Grid item xs={6}>
+                    <Typography component={"h2"} variant="h2" marginBottom={2}>
+                        About Me
+                    </Typography>
+                    <Typography component={"p"}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography component={"p"}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
+                    </Typography>
+                </Grid>
+            </Grid>
         </Fragment>
     );
 };
