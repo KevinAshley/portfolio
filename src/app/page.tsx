@@ -1,9 +1,24 @@
+"use client";
+
 import React, { Fragment } from "react";
 import Box from "@mui/material/Box";
+import { styled, css } from "@mui/material/styles";
 import Button from "@mui/material/Button";
+import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import { ReactLogo, MuiLogo, NextLogo, VercelLogo } from "../components/logos";
 import RoutedLink from "@/components/routedLink";
+
+const avatarImageHeight = 130;
+const avatarImageWidth = 130;
+
+const AvatarImage = styled(Image)({
+    width: avatarImageWidth,
+    height: avatarImageHeight,
+    border: "5px solid var(--mui-palette-border)",
+    borderRadius: "50%",
+    objectFit: "cover",
+});
 
 const Home = () => {
     return (
@@ -11,24 +26,24 @@ const Home = () => {
             <Box
                 sx={{
                     backgroundImage: `linear-gradient(0deg, var(--mui-palette-backgroundOverlayGradient), var(--mui-palette-backgroundOverlayGradient)), url(/images/pexels-photo-12027143-cropped.jpg)`,
-                    width: "100%",
                     minHeight: "28vw",
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
-                    padding: "2rem",
+                    padding: "4rem",
                     display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     borderBottom: "1px solid var(--mui-palette-ribbon)",
                     borderCollapse: "collapse",
                 }}
             >
-                <Box
-                    sx={{
-                        maxWidth: 700,
-                        margin: "auto",
-                        overflow: "hidden",
-                        textAlign: "center",
-                    }}
-                >
+                <Box maxWidth="md" textAlign={"center"}>
+                    <AvatarImage
+                        src="/images/kevin-gray-sky.png"
+                        alt="kevin gray sky"
+                        width={avatarImageWidth}
+                        height={avatarImageHeight}
+                    />
                     <Typography
                         variant="h1"
                         component="h1"
@@ -50,34 +65,14 @@ const Home = () => {
                         component="p"
                         sx={{
                             fontSize: "12px",
-                            marginBottom: "3rem",
                             textShadow:
                                 "var(--mui-palette-backgroundOverlayTextShadow)",
                         }}
                     >
+                        Full Stack Web Developer
+                        <br />
                         Sacramento, CA
                     </Typography>
-                    <Typography
-                        component="p"
-                        sx={{
-                            marginBottom: "3rem",
-                        }}
-                    >
-                        Thanks for visiting my website. Check out my{" "}
-                        <RoutedLink href="/portfolio/">portfolio</RoutedLink>{" "}
-                        for examples of my work. All of the code for this
-                        website is available to review at github.
-                    </Typography>
-                    <Box sx={{ mb: 5 }}>
-                        {" "}
-                        <Button
-                            variant="contained"
-                            href="https://github.com/KevinAshley/kashley.net"
-                            target="_blank"
-                        >
-                            Github Repo
-                        </Button>
-                    </Box>
                 </Box>
             </Box>
             <Box
@@ -103,7 +98,15 @@ const Home = () => {
                 }}
             >
                 This React.js website was built with NextJS, Material UI
-                components, and&nbsp;Vercel hosting.
+                components, and&nbsp;Vercel hosting. All of the code for this
+                website is available to review at{" "}
+                <RoutedLink
+                    href="https://github.com/KevinAshley/portfolio"
+                    target="_blank"
+                >
+                    Github
+                </RoutedLink>
+                .
             </Typography>
         </Fragment>
     );
