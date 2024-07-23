@@ -6,8 +6,7 @@ import { styled, css } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
-
-import RoutedLink from "@/components/routedLink";
+import DotsCanvas from "@/components/dotsCanvas";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/system/Container";
 
@@ -38,8 +37,10 @@ const Home = () => {
                     borderBottom: "1px solid var(--mui-palette-ribbon)",
                     borderCollapse: "collapse",
                     marginBottom: "3rem",
+                    position: "relative",
                 }}
             >
+                <DotsCanvas />
                 <Box
                     maxWidth="md"
                     textAlign={"center"}
