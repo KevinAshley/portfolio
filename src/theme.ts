@@ -6,7 +6,12 @@ import {
 } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
 
-const baseTheme = createTheme();
+const baseTheme = createTheme({
+    palette: {
+        // @ts-ignore
+        dark: "#2b2b2b",
+    },
+});
 
 const theme = extendTheme(baseTheme, {
     typography: {
