@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
 import Box from "@mui/material/Box";
 import Header from "./header";
-import { grey } from "@mui/material/colors";
-import Copyright from "./copyright";
+import Footer from "./footer";
 
 export default function PageWrapper({ children }: { children: ReactNode }) {
     return (
@@ -17,12 +16,7 @@ export default function PageWrapper({ children }: { children: ReactNode }) {
                 >
                     {children}
                 </Box>
-                <Box
-                    component="footer"
-                    sx={{ px: 2, py: 1, bgcolor: grey["800"] }}
-                >
-                    <Copyright />
-                </Box>
+                <Footer />
             </Box>
         </Box>
     );
