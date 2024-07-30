@@ -32,7 +32,13 @@ function Header() {
                         maxWidth="md"
                         spacing={1}
                         alignItems="center"
-                        sx={{ margin: "auto" }}
+                        sx={(theme) => ({
+                            margin: "auto",
+                            maxWidth: "md",
+                            [theme.breakpoints.up("lg")]: {
+                                maxWidth: "lg",
+                            },
+                        })}
                     >
                         <Grid item>
                             <IconButton
@@ -53,7 +59,7 @@ function Header() {
                             }}
                             item
                         >
-                            Kashley.net
+                            Kevin Ashley
                         </Grid>
                         <Grid item xs />
                         <Grid item>

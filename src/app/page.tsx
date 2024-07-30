@@ -27,14 +27,15 @@ const Home = () => {
             <Box
                 sx={{
                     backgroundImage: `linear-gradient(180deg, var(--mui-palette-backgroundOverlayGradientOne), var(--mui-palette-backgroundOverlayGradientTwo)), url(/images/pexels-photo-12027143-cropped.jpg)`,
-                    minHeight: "40vw",
+                    minHeight: "36vw",
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
                     padding: "4rem",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    borderBottom: "1px solid var(--mui-palette-background)",
+                    borderBottom:
+                        "1px solid var(--mui-palette-background-default)",
                     borderCollapse: "collapse",
                     marginBottom: "3rem",
                     position: "relative",
@@ -80,7 +81,14 @@ const Home = () => {
                 </Box>
             </Box>
 
-            <Container maxWidth="md">
+            <Container
+                sx={(theme) => ({
+                    maxWidth: "md",
+                    [theme.breakpoints.up("lg")]: {
+                        maxWidth: "lg",
+                    },
+                })}
+            >
                 <Grid
                     container
                     spacing={2}
