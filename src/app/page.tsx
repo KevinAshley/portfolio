@@ -10,8 +10,8 @@ import DotsCanvas from "@/components/dotsCanvas";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/system/Container";
 
-const avatarImageHeight = 130;
-const avatarImageWidth = 130;
+const avatarImageHeight = 160;
+const avatarImageWidth = 160;
 
 const AvatarImage = styled(Image)({
     width: avatarImageWidth,
@@ -26,21 +26,20 @@ const Home = () => {
         <Fragment>
             <Box
                 sx={{
-                    backgroundImage: `linear-gradient(0deg, var(--mui-palette-backgroundOverlayGradient), var(--mui-palette-backgroundOverlayGradient)), url(/images/pexels-photo-12027143-cropped.jpg)`,
-                    minHeight: "28vw",
+                    backgroundImage: `linear-gradient(180deg, var(--mui-palette-backgroundOverlayGradientOne), var(--mui-palette-backgroundOverlayGradientTwo)), url(/images/pexels-photo-12027143-cropped.jpg)`,
+                    minHeight: "40vw",
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
                     padding: "4rem",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    borderBottom: "1px solid var(--mui-palette-ribbon)",
+                    borderBottom: "1px solid var(--mui-palette-background)",
                     borderCollapse: "collapse",
                     marginBottom: "3rem",
                     position: "relative",
                 }}
             >
-                <DotsCanvas />
                 <Box
                     maxWidth="md"
                     textAlign={"center"}

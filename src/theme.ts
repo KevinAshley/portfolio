@@ -3,6 +3,7 @@
 import {
     experimental_extendTheme as extendTheme,
     createTheme,
+    darken,
 } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
 
@@ -62,8 +63,9 @@ const theme = extendTheme(baseTheme, {
                 },
                 // @ts-ignore
                 border: "rgba(0,0,0,0.1)",
-                backgroundOverlayGradient: "rgba(255,255,255,0.85)",
-                backgroundOverlayTextShadow: "0px 0px 5px white",
+                backgroundOverlayGradientOne: "rgba(255, 189, 189, 0.5)",
+                backgroundOverlayGradientTwo: "rgba(255,255,255,0.85)",
+                backgroundOverlayTextShadow: "0px 0px 30px white",
                 ribbon: "#efefef",
             },
         },
@@ -75,8 +77,9 @@ const theme = extendTheme(baseTheme, {
                 },
                 // @ts-ignore
                 border: "rgba(255,255,255,0.1)",
-                backgroundOverlayGradient: "rgba(0,0,0,0.7)",
-                backgroundOverlayTextShadow: "0px 0px 5px black",
+                backgroundOverlayGradientOne: "rgba(0,0,0,0.7)",
+                backgroundOverlayGradientTwo: "rgba(30,0,43,0.7)",
+                backgroundOverlayTextShadow: "0px 0px 30px black",
                 ribbon: grey["800"],
             },
         },
