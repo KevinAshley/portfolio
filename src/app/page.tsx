@@ -66,7 +66,7 @@ const Home = () => {
                         Kevin Ashley
                     </Typography>
                     <Typography component="p" variant={"body1"}>
-                        Full Stack Web Developer
+                        Full Stack Web Developer TEST
                     </Typography>
                     <Typography
                         component="p"
