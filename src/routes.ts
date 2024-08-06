@@ -12,12 +12,12 @@ export const mainRoutes = [
         route: "/",
         icon: HomeIcon,
     },
-    {
-        label: "Portfolio",
-        route: "/portfolio/",
-        icon: CategoryIcon,
-        suppress: true,
-    },
+    // {
+    //     label: "Portfolio",
+    //     route: "/portfolio/",
+    //     icon: CategoryIcon,
+    //     suppress: true,
+    // },
 ];
 
 export const portfolioRoutes = [

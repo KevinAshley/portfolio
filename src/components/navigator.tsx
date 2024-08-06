@@ -18,9 +18,9 @@ const categories = [
         children: [...mainRoutes],
     },
     {
-        id: "Portfolio",
+        // id: "Portfolio",
         children: [...portfolioRoutes],
-        href: "/portfolio/",
+        // href: "/portfolio/",
     },
 ];
 
@@ -62,25 +62,9 @@ const Navigator = (props: any) => {
                     </IconButton>
                 </ListItem>
 
-                {categories.map(({ id, children, href }, categoryIndex) => (
+                {categories.map(({ children }, categoryIndex) => (
                     <Box key={categoryIndex}>
-                        {id ? (
-                            <ListItem sx={{ py: 2, px: 3 }}>
-                                <ListItemButton
-                                    component={Link}
-                                    href={href}
-                                    onClick={onClose}
-                                    sx={{
-                                        padding: 0,
-                                        fontSize: "14px",
-                                    }}
-                                >
-                                    {id}
-                                </ListItemButton>
-                            </ListItem>
-                        ) : (
-                            <Divider sx={{ mb: 2 }} />
-                        )}
+                        <Divider sx={{ mb: 2 }} />
 
                         {children.map(({ label: childId, icon, route }) => {
                             const Icon = icon;
