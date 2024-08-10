@@ -9,7 +9,8 @@ import Typography from "@mui/material/Typography";
 import DotsCanvas from "@/components/dotsCanvas";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/system/Container";
-import kevinGraySky from "/public/images/kevin-gray-sky.png";
+import kevinGraySky from "@images/kevin-gray-sky.png";
+import sacramentoSkyline from "@images/pexels-photo-12027143-cropped.jpg";
 
 const avatarImageHeight = 160;
 const avatarImageWidth = 160;
@@ -27,7 +28,7 @@ const Home = () => {
         <Fragment>
             <Box
                 sx={{
-                    // backgroundImage: `linear-gradient(180deg, var(--mui-palette-backgroundOverlayGradientOne), var(--mui-palette-backgroundOverlayGradientTwo)), url(/images/pexels-photo-12027143-cropped.jpg)`,
+                    backgroundImage: `linear-gradient(180deg, var(--mui-palette-backgroundOverlayGradientOne), var(--mui-palette-backgroundOverlayGradientTwo)), url(${sacramentoSkyline.src})`,
                     minHeight: "36vw",
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
