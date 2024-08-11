@@ -7,7 +7,9 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "docker:dev": "docker build -f Dockerfile.dev -t dev_image . && docker run -dp 3000:3000 -w /app --mount type=bind,src='./',target=/app dev_image",
+        "docker:build_dev": "docker build -f Dockerfile.dev -t dev_image . ",
+        "docker:run_dev": "docker run -dp 3000:3000 -w /app --mount type=bind,src='./',target=/app dev_image",
+        "docker:dev": "npm run docker:build_dev && npm run docker:run_dev",
         "docker:build": "docker build -t production_image .",
         "docker:run": "docker run -dp 3000:3000 production_image"
     },
@@ -16,7 +18,8 @@
         "docker_build_args: -f": "Specify a dockerfile",
         "docker_run_args: -d": "Detach from console when done",
         "docker_run_args: -p": "Publish container port to host",
-        "docker_run_args: -w": "Working directory inside the container"
+        "docker_run_args: -w": "Working directory inside the container",
+        "docker_run_args: --mount": "Attach filesystem mount to the container (w/ type,src,target)"
     },
     "dependencies": {
         "@emotion/cache": "^11.13.0",
