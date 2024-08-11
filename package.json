@@ -11,7 +11,8 @@
         "docker:run_dev": "docker run -dp 3000:3000 -w /app --mount type=bind,src='./',target=/app dev_image",
         "docker:dev": "npm run docker:build_dev && npm run docker:run_dev",
         "docker:build": "docker build -t production_image .",
-        "docker:run": "docker run -dp 3000:3000 production_image"
+        "docker:run": "docker run -dp 3000:3000 production_image",
+        "prisma:create_db": "npx prisma migrate dev --name create_db"
     },
     "scriptsComments": {
         "docker_build_args: -t": "Assigns a name to the image",
@@ -29,6 +30,7 @@
         "@mui/material": "^5.16.4",
         "@mui/material-nextjs": "^5.16.4",
         "@mui/system": "^5.16.4",
+        "@prisma/client": "^5.18.0",
         "next": "14.2.5",
         "react": "^18",
         "react-dom": "^18",
@@ -40,6 +42,7 @@
         "@types/react-dom": "^18",
         "eslint": "^8",
         "eslint-config-next": "14.2.5",
+        "prisma": "^5.18.0",
         "typescript": "^5"
     }
 }

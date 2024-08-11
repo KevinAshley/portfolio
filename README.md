@@ -3,6 +3,26 @@ This is a **_Next.js_** website that runs on **_Docker_**.
 While the default **_Next.js_** scripts work just fine,
 my preference is to run **_Docker_** for development.
 
+## First-time Local Setup
+
+1. Create a .env file at the root. For cloned projects, copy .env.example
+
+2. Set up the SQLite Database
+
+    Assuming this is a cloned repo with no DB already configured, do the following:
+
+    - Delete any existings migrations:
+
+        ```bash
+        rm -rf /prisma/migrations
+        ```
+
+    - Create the SQLite database
+
+        ```bash
+        npm run prisma:create_db
+        ```
+
 ## Development
 
 First, make sure you have **_Docker Desktop_** installed.
