@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import PageWrapper from "@/components/pageWrapper";
 import ThemeProvider from "@/components/themeProvider";
+import MainContextProvider from "@/contexts/mainContext";
+import Toast from "@/components/toast";
 
 export const metadata: Metadata = {
     title: "Kevin Ashley's Portfolio",
@@ -16,7 +18,10 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning={true}>
             <body>
                 <ThemeProvider>
-                    <PageWrapper>{children}</PageWrapper>
+                    <MainContextProvider>
+                        <PageWrapper>{children}</PageWrapper>
+                        <Toast />
+                    </MainContextProvider>
                 </ThemeProvider>
             </body>
         </html>
