@@ -88,27 +88,27 @@ const TodoList = () => {
     };
 
     const deleteSelectedItems = () => {
-        // apiFetchWrapper({
-        //     method: "POST",
-        //     uri: "/api/delete_todo_items",
-        //     body: {
-        //         ids: selectedIds,
-        //     },
-        // })
-        //     .then(() => {
-        //         getTodoItems();
-        //         setToast({
-        //             message: "Successfully deleted items!",
-        //             variant: toastVariants.SUCCESS,
-        //         });
-        //         setSelectedIds([]);
-        //     })
-        //     .catch((err) => {
-        //         setToast({
-        //             message: err.message,
-        //             variant: toastVariants.ERROR,
-        //         });
-        //     });
+        apiFetchWrapper({
+            method: "DELETE",
+            uri: "/api/todo-list",
+            body: {
+                ids: selectedIds,
+            },
+        })
+            .then(() => {
+                getTodoItems();
+                setToast({
+                    message: "Successfully deleted items!",
+                    variant: toastVariants.SUCCESS,
+                });
+                setSelectedIds([]);
+            })
+            .catch((err) => {
+                setToast({
+                    message: err.message,
+                    variant: toastVariants.ERROR,
+                });
+            });
     };
 
     return (

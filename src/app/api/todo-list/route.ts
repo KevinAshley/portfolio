@@ -31,3 +31,21 @@ export async function PUT(req: Request) {
         return handleError(error);
     }
 }
+
+export async function DELETE(req: Request) {
+    try {
+        const data = await req.json();
+        await prisma.todoItem.deleteMany({
+            where: {
+                id: {
+                    in: data.ids,
+                },
+            },
+        });
+        return NextResponse.json({
+            success: true,
+        });
+    } catch (error: unknown) {
+        return handleError(error);
+    }
+}
