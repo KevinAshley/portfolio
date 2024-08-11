@@ -7,8 +7,9 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "docker:build": "docker build -t portfolio .",
-        "docker:run": "docker run -p 3000:3000 portfolio"
+        "docker:dev": "docker build -t dev_image . && docker run -dp 3000:3000 dev_image",
+        "docker:build": "docker build -t production_image .",
+        "docker:run": "docker run -dp 3000:3000 production_image"
     },
     "dependencies": {
         "@emotion/cache": "^11.13.0",
