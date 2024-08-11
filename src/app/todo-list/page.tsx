@@ -65,26 +65,26 @@ const TodoList = () => {
     }, [initialized, getTodoItems]);
 
     const addItem = () => {
-        // apiFetchWrapper({
-        //     method: "POST",
-        //     uri: "/api/add_todo_item",
-        //     body: newItemValues,
-        // })
-        //     .then(() => {
-        //         setAddNew(false);
-        //         getTodoItems();
-        //         setToast({
-        //             message: "Successfully added new item!",
-        //             variant: toastVariants.SUCCESS,
-        //         });
-        //         setNewItemValues({});
-        //     })
-        //     .catch((err) => {
-        //         setToast({
-        //             message: err.message,
-        //             variant: toastVariants.ERROR,
-        //         });
-        //     });
+        apiFetchWrapper({
+            method: "PUT",
+            uri: "/api/todo-list",
+            body: newItemValues,
+        })
+            .then(() => {
+                setAddNew(false);
+                getTodoItems();
+                setToast({
+                    message: "Successfully added new item!",
+                    variant: toastVariants.SUCCESS,
+                });
+                setNewItemValues({});
+            })
+            .catch((err) => {
+                setToast({
+                    message: err.message,
+                    variant: toastVariants.ERROR,
+                });
+            });
     };
 
     const deleteSelectedItems = () => {

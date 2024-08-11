@@ -1,10 +1,10 @@
 export const apiFetchWrapper = ({
     uri,
-    method = "POST",
+    method,
     body,
 }: {
     uri: string;
-    method: "POST" | "GET";
+    method: "POST" | "PUT" | "GET";
     body?: { [key: string]: any };
 }) => {
     return fetch(uri, {

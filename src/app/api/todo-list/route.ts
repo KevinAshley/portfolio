@@ -12,3 +12,14 @@ export async function GET(req: Request) {
     });
     return NextResponse.json(todoItems);
 }
+
+export async function PUT(req: Request) {
+    const data = await req.json();
+    console.log("Data: ", data);
+    await prisma.todoItem.create({
+        data,
+    });
+    return NextResponse.json({
+        success: true,
+    });
+}
