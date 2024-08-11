@@ -1,3 +1,35 @@
+import { NextResponse } from "next/server";
+
+interface ErrorMessage {
+    message: string;
+}
+
+function isErrorMessage(error: any): error is ErrorMessage {
+    return typeof error?.message === "string";
+}
+
+export const handleError = (error: unknown) => {
+    if (isErrorMessage(error)) {
+        return NextResponse.json(
+            {
+                success: false,
+                error: error.message,
+            },
+            { status: 404 }
+        );
+    } else {
+        // this is an unexpected error.. log it to the console
+        console.error("Internal server error: ", error);
+        return NextResponse.json(
+            {
+                success: false,
+                error: "Internal server error",
+            },
+            { status: 500 }
+        );
+    }
+};
+
 export const apiFetchWrapper = ({
     uri,
     method,
@@ -17,6 +49,7 @@ export const apiFetchWrapper = ({
     })
         .then((r) => r.json())
         .then((response) => {
+            console.log("hey", response);
             if (response.error) {
                 throw new Error(response.error);
             }
