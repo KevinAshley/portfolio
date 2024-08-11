@@ -7,14 +7,16 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "docker:dev": "docker build -t dev_image . && docker run -dp 3000:3000 dev_image",
+        "docker:dev": "docker run -dp 3000:3000 -w /app --mount type=bind,src='./',target=/app node:18-alpine sh -c 'npm install && npm run dev'",
         "docker:build": "docker build -t production_image .",
         "docker:run": "docker run -dp 3000:3000 production_image"
     },
     "scriptsComments": {
-        "docker_args: -t": "Assigns a name to the image",
-        "docker_args: -d": "Detach from console when done",
-        "docker_args: -p": "Publish container port to host"
+        "docker_build_args: -t": "Assigns a name to the image",
+        "docker_build_args: -f": "Specify a dockerfile",
+        "docker_run_args: -d": "Detach from console when done",
+        "docker_run_args: -p": "Publish container port to host",
+        "docker_run_args: -w": "Working directory inside the container"
     },
     "dependencies": {
         "@emotion/cache": "^11.13.0",
