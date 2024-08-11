@@ -5,6 +5,7 @@ import ModalForm from "@/components/modalForm";
 import { InputIf } from "@/components/form";
 import Box from "@mui/material/Box";
 import { useState } from "react";
+import { TodoItem } from "@prisma/client";
 
 const itemFormInputs: InputIf[] = [
     {
@@ -31,6 +32,7 @@ const tableColumns: TableColumnIf[] = [
 ];
 
 const TodoList = () => {
+    const [items, setItems] = useState<TodoItem[]>([]);
     const [addNew, setAddNew] = useState(false);
     const [newItemValues, setNewItemValues] = useState<{
         [key: string]: string;
