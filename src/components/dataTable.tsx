@@ -27,7 +27,7 @@ import moment from "moment";
 
 type DataRow = {
     id: number;
-    [key: string]: string | number | Date | null;
+    [key: string]: string | number | Date | boolean | null;
 };
 
 function descendingComparator<DataRow>(
@@ -389,19 +389,21 @@ const DataTable = ({
                                         </TableCell>
                                         {tableColumns.map(
                                             (thisColumn, thisColumnIndex) => {
+                                                const value =
+                                                    row[thisColumn.id];
                                                 return (
                                                     <TableCell
                                                         padding="none"
                                                         key={thisColumnIndex}
                                                     >
                                                         {thisColumn.date &&
-                                                        !!row[thisColumn.id] ? (
+                                                        !!value ? (
                                                             <>
                                                                 {moment(
-                                                                    row[
-                                                                        thisColumn
-                                                                            .id
-                                                                    ]
+                                                                    typeof value !==
+                                                                        "boolean"
+                                                                        ? value
+                                                                        : ""
                                                                 ).format(
                                                                     "MMMM Do YYYY, h:mm:ss a"
                                                                 )}
