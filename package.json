@@ -11,6 +11,11 @@
         "docker:build": "docker build -t production_image .",
         "docker:run": "docker run -dp 3000:3000 production_image"
     },
+    "scriptsComments": {
+        "docker_args: -t": "Assigns a name to the image",
+        "docker_args: -d": "Detach from console when done",
+        "docker_args: -p": "Publish container port to host"
+    },
     "dependencies": {
         "@emotion/cache": "^11.13.0",
         "@emotion/react": "^11.11.4",
