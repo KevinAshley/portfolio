@@ -1,13 +1,16 @@
 "use client";
 
-import DataTable, { TableColumnIf } from "@/components/dataTable";
+import DataTable, { TableColumnIf } from "@/sharedComponents/dataTable";
 import ModalForm from "@/sharedComponents/modalForm";
 import { InputIf } from "@/sharedComponents/form";
 import Box from "@mui/material/Box";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { TodoItem } from "@prisma/client";
 import { apiFetchWrapper } from "@/app/api";
-import { MainContext, toastVariants } from "@/contexts/mainContext";
+import {
+    MainContext,
+    toastVariants,
+} from "@/sharedComponents/contexts/mainContext";
 
 const itemFormInputs: InputIf[] = [
     {

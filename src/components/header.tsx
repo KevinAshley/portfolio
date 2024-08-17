@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import LoginAvatar from "./loginAvatar";
-import PaletteModeSwitch from "./paletteModeSwitch";
+import PaletteModeSwitch from "@/sharedComponents/paletteModeSwitch";
 import Navigator from "./navigator";
 import { useState } from "react";
 

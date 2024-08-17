@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageWrapper from "@/components/pageWrapper";
 import ThemeProvider from "@/components/themeProvider";
-import MainContextProvider from "@/contexts/mainContext";
+import MainContextProvider from "@/sharedComponents/contexts/mainContext";
 import Toast from "@/components/toast";
 
 export const metadata: Metadata = {

@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import RoutedLink from "./routedLink";
+import RoutedLink from "@/sharedComponents/routedLink";
 
 export default function Copyright() {
     return (
