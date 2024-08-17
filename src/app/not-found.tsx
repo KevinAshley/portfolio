@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import ReportTwoToneIcon from "@mui/icons-material/ReportTwoTone";
 import Box from "@mui/system/Box";
-import RoutedLink from "@/components/routedLink";
+import RoutedLink from "@/sharedComponents/routedLink";
 
 export default function NotFound() {
     return (

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageWrapper from "@/components/pageWrapper";
 import ThemeProvider from "@/components/themeProvider";
 import MainContextProvider from "@/sharedComponents/contexts/mainContext";
-import Toast from "@/components/toast";
+import Toast from "@/sharedComponents/toast";
 
 export const metadata: Metadata = {
     title: "Kevin Ashley's Portfolio",
