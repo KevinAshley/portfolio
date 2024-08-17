@@ -41,8 +41,8 @@ const TodoList = () => {
     const [items, setItems] = useState<TodoItem[]>([]);
     const [addNew, setAddNew] = useState(false);
     const [editingId, setEditingId] = useState<number | undefined>(undefined);
-    const [newItemValues, setNewItemValues] = useState<{
-        [key: string]: string;
+    const [formValues, setFormValues] = useState<{
+        [key: string]: string | number | boolean;
     }>({});
     const [selectedIds, setSelectedIds] = useState<number[]>([]);
     const { setToast } = useContext(MainContext);
@@ -72,7 +72,7 @@ const TodoList = () => {
         apiFetchWrapper({
             method: "PUT",
             uri: "/api/todo-list",
-            body: newItemValues,
+            body: formValues,
         })
             .then(() => {
                 setAddNew(false);
@@ -81,7 +81,6 @@ const TodoList = () => {
                     message: "Successfully added new item!",
                     variant: toastVariants.SUCCESS,
                 });
-                setNewItemValues({});
             })
             .catch((err) => {
                 setToast({
@@ -119,6 +118,14 @@ const TodoList = () => {
             });
     };
 
+    useEffect(() => {
+        if (editingId) {
+            setFormValues(items.find((item) => item.id == editingId) || {});
+        } else {
+            setFormValues({});
+        }
+    }, [items, editingId]);
+
     return (
         <Box maxWidth="md" sx={{ margin: "auto", mt: 5 }}>
             <DataTable
@@ -138,8 +145,8 @@ const TodoList = () => {
                 handleClose={() => setAddNew(false)}
                 handleSubmit={addItem}
                 inputs={itemFormInputs}
-                values={newItemValues}
-                setValues={setNewItemValues}
+                values={formValues}
+                setValues={setFormValues}
             />
             <ModalForm
                 title={"Edit To-Do Item"}
@@ -147,8 +154,8 @@ const TodoList = () => {
                 handleClose={() => setEditingId(undefined)}
                 handleSubmit={editItem}
                 inputs={itemFormInputs}
-                values={newItemValues}
-                setValues={setNewItemValues}
+                values={formValues}
+                setValues={setFormValues}
             />
         </Box>
     );
