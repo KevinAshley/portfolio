@@ -1,0 +1,3 @@
+[submodule "src/sharedComponents"]
+	path = src/sharedComponents
+	url = https://github.com/KevinAshley/sharedComponents
