@@ -1,9 +1,7 @@
+import { ReactNode } from "react";
 import type { Metadata } from "next";
-import PageWrapper from "@/sharedComponents/pageWrapper";
-import ThemeProvider from "@/sharedComponents/themeProvider";
-import MainContextProvider from "@/sharedComponents/contexts/mainContext";
-import Toast from "@/sharedComponents/toast";
 import { RouteGroupIf } from "@/sharedComponents/navigator";
+import { MainLayout } from "@/sharedComponents/mainLayout";
 import theme from "../theme";
 import { mainRoutes, portfolioRoutes } from "../routes";
 
@@ -26,23 +24,15 @@ const websiteName = "Kevin Ashley";
 export default function RootLayout({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning={true}>
-            <body>
-                <ThemeProvider theme={theme}>
-                    <MainContextProvider>
-                        <PageWrapper
-                            groupedRoutes={groupedRoutes}
-                            websiteName={websiteName}
-                        >
-                            {children}
-                        </PageWrapper>
-                        <Toast />
-                    </MainContextProvider>
-                </ThemeProvider>
-            </body>
-        </html>
+        <MainLayout
+            theme={theme}
+            groupedRoutes={groupedRoutes}
+            websiteName={websiteName}
+        >
+            {children}
+        </MainLayout>
     );
 }
