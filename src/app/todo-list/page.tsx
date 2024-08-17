@@ -91,7 +91,25 @@ const TodoList = () => {
     };
 
     const editItem = () => {
-        console.log("test");
+        apiFetchWrapper({
+            method: "POST",
+            uri: "/api/todo-list",
+            body: formValues,
+        })
+            .then(() => {
+                setEditingId(undefined);
+                getTodoItems();
+                setToast({
+                    message: "Successfully edited item!",
+                    variant: toastVariants.SUCCESS,
+                });
+            })
+            .catch((err) => {
+                setToast({
+                    message: err.message,
+                    variant: toastVariants.ERROR,
+                });
+            });
     };
 
     const deleteSelectedItems = () => {

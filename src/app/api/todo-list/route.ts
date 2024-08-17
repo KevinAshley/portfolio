@@ -32,6 +32,24 @@ export async function PUT(req: Request) {
     }
 }
 
+export async function POST(req: Request) {
+    try {
+        const data = await req.json();
+        const { id, ...otherData } = data;
+        await prisma.todoItem.update({
+            where: {
+                id,
+            },
+            data: otherData,
+        });
+        return NextResponse.json({
+            success: true,
+        });
+    } catch (error: unknown) {
+        return handleError(error);
+    }
+}
+
 export async function DELETE(req: Request) {
     try {
         const data = await req.json();
