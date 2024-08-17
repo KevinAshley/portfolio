@@ -1,8 +1,8 @@
 "use client";
 
 import DataTable, { TableColumnIf } from "@/components/dataTable";
-import ModalForm from "@/components/modalForm";
-import { InputIf } from "@/components/form";
+import ModalForm from "@/sharedComponents/modalForm";
+import { InputIf } from "@/sharedComponents/form";
 import Box from "@mui/material/Box";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { TodoItem } from "@prisma/client";
