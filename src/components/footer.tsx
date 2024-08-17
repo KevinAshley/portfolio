@@ -3,7 +3,7 @@ import Copyright from "./copyright";
 import { ReactLogo, MuiLogo, NextLogo, VercelLogo } from "../components/logos";
 import Typography from "@mui/material/Typography";
 
-import RoutedLink from "@/components/routedLink";
+import RoutedLink from "@/sharedComponents/routedLink";
 
 const height = "36px;";
 
