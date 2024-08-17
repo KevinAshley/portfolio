@@ -40,6 +40,7 @@ const TodoList = () => {
     const [initialized, setInitialized] = useState(false);
     const [items, setItems] = useState<TodoItem[]>([]);
     const [addNew, setAddNew] = useState(false);
+    const [editingId, setEditingId] = useState<number | undefined>(undefined);
     const [newItemValues, setNewItemValues] = useState<{
         [key: string]: string;
     }>({});
@@ -90,6 +91,10 @@ const TodoList = () => {
             });
     };
 
+    const editItem = () => {
+        console.log("test");
+    };
+
     const deleteSelectedItems = () => {
         apiFetchWrapper({
             method: "DELETE",
@@ -125,12 +130,22 @@ const TodoList = () => {
                 deleteSelected={deleteSelectedItems}
                 tableColumns={tableColumns}
                 defaultOrderBy={"id"}
+                setEditingId={setEditingId}
             />
             <ModalForm
                 title={"Add New To-Do Item"}
                 open={addNew}
                 setOpen={setAddNew}
                 handleSubmit={addItem}
+                inputs={itemFormInputs}
+                values={newItemValues}
+                setValues={setNewItemValues}
+            />
+            <ModalForm
+                title={"Edit To-Do Item"}
+                open={!!editingId}
+                setOpen={() => setEditingId(undefined)}
+                handleSubmit={editItem}
                 inputs={itemFormInputs}
                 values={newItemValues}
                 setValues={setNewItemValues}
