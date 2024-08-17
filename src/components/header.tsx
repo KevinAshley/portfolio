@@ -5,12 +5,18 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import LoginAvatar from "./loginAvatar";
 import PaletteModeSwitch from "@/sharedComponents/paletteModeSwitch";
 import Navigator from "./navigator";
 import { useState } from "react";
+import { RouteGroupIf } from "./navigator";
 
-function Header() {
+function Header({
+    groupedRoutes,
+    headerText,
+}: {
+    groupedRoutes: RouteGroupIf[];
+    headerText: string;
+}) {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
@@ -19,7 +25,11 @@ function Header() {
 
     return (
         <React.Fragment>
-            <Navigator open={mobileOpen} onClose={handleDrawerToggle} />
+            <Navigator
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                groupedRoutes={groupedRoutes}
+            />
             <AppBar
                 color="primary"
                 enableColorOnDark={true}
@@ -59,7 +69,7 @@ function Header() {
                             }}
                             item
                         >
-                            Kevin Ashley
+                            {headerText}
                         </Grid>
                         <Grid item xs />
                         <Grid item>

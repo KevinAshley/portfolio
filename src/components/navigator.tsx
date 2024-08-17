@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -10,22 +11,29 @@ import ListItemText from "@mui/material/ListItemText";
 import Link from "next/link";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
-import { mainRoutes, portfolioRoutes } from "../routes";
 import { usePathname } from "next/navigation";
+import { SvgIconTypeMap } from "@mui/material/SvgIcon";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 
-const categories = [
-    {
-        children: [...mainRoutes],
-    },
-    {
-        // id: "Portfolio",
-        children: [...portfolioRoutes],
-        // href: "/portfolio/",
-    },
-];
+interface RouteIf {
+    label: string;
+    route: string;
+    icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
+    // allow additional props
+    [x: string]: unknown;
+}
 
-const Navigator = (props: any) => {
-    const { open, onClose } = props;
+export interface RouteGroupIf {
+    routes: RouteIf[];
+}
+
+interface NavigatorIf {
+    open: boolean;
+    onClose: () => void;
+    groupedRoutes: RouteGroupIf[];
+}
+
+const Navigator = ({ open, onClose, groupedRoutes }: NavigatorIf) => {
     const pathname = usePathname();
 
     return (
@@ -62,15 +70,18 @@ const Navigator = (props: any) => {
                     </IconButton>
                 </ListItem>
 
-                {categories.map(({ children }, categoryIndex) => (
+                {groupedRoutes.map(({ routes }, categoryIndex) => (
                     <Box key={categoryIndex}>
                         <Divider sx={{ mb: 2 }} />
 
-                        {children.map(({ label: childId, icon, route }) => {
+                        {routes.map(({ label, icon, route }, routeIndex) => {
                             const Icon = icon;
                             const active = pathname === route;
                             return (
-                                <ListItem disablePadding key={childId}>
+                                <ListItem
+                                    disablePadding
+                                    key={`route-${routeIndex}`}
+                                >
                                     <ListItemButton
                                         selected={active}
                                         sx={{
@@ -84,7 +95,7 @@ const Navigator = (props: any) => {
                                         <ListItemIcon>
                                             <Icon />
                                         </ListItemIcon>
-                                        <ListItemText>{childId}</ListItemText>
+                                        <ListItemText>{label}</ListItemText>
                                     </ListItemButton>
                                 </ListItem>
                             );
