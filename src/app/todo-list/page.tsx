@@ -135,7 +135,7 @@ const TodoList = () => {
             <ModalForm
                 title={"Add New To-Do Item"}
                 open={addNew}
-                setOpen={setAddNew}
+                handleClose={() => setAddNew(false)}
                 handleSubmit={addItem}
                 inputs={itemFormInputs}
                 values={newItemValues}
@@ -144,7 +144,7 @@ const TodoList = () => {
             <ModalForm
                 title={"Edit To-Do Item"}
                 open={!!editingId}
-                setOpen={() => setEditingId(undefined)}
+                handleClose={() => setEditingId(undefined)}
                 handleSubmit={editItem}
                 inputs={itemFormInputs}
                 values={newItemValues}
