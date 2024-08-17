@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import Box from "@mui/material/Box";
-import Header from "./header";
+import Header from "@/sharedComponents/header";
 import Footer from "./footer";
 import { mainRoutes, portfolioRoutes } from "../routes";
-import { RouteGroupIf } from "./navigator";
+import { RouteGroupIf } from "@/sharedComponents/navigator";
 
 const groupedRoutes: RouteGroupIf[] = [
     {
