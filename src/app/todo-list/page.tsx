@@ -3,7 +3,7 @@
 import { TableColumnIf } from "@/sharedComponents/dataTable";
 import { FormValuesIf, InputIf } from "@/sharedComponents/form";
 import Box from "@mui/material/Box";
-import { apiFetchWrapper } from "@/sharedComponents/nextApi";
+import { apiFetchWrapper, ApiMethod } from "@/sharedComponents/nextApi";
 import DataTableWithModals from "@/sharedComponents/dataTableWithModals";
 
 const itemFormInputs: InputIf[] = [
@@ -33,14 +33,14 @@ const tableColumns: TableColumnIf[] = [
 const TodoList = () => {
     const getItems = () => {
         return apiFetchWrapper({
-            method: "GET",
+            method: ApiMethod.GET,
             uri: "/api/todo-list",
         });
     };
 
     const addItem = (formValues: FormValuesIf) => {
         return apiFetchWrapper({
-            method: "PUT",
+            method: ApiMethod.PUT,
             uri: "/api/todo-list",
             body: formValues,
         });
@@ -48,7 +48,7 @@ const TodoList = () => {
 
     const editItem = (formValues: FormValuesIf) => {
         return apiFetchWrapper({
-            method: "POST",
+            method: ApiMethod.POST,
             uri: "/api/todo-list",
             body: formValues,
         });
@@ -56,7 +56,7 @@ const TodoList = () => {
 
     const deleteSelectedItems = (selectedIds: number[]) => {
         return apiFetchWrapper({
-            method: "DELETE",
+            method: ApiMethod.DELETE,
             uri: "/api/todo-list",
             body: {
                 ids: selectedIds,
