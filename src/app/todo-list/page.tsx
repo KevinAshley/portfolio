@@ -39,7 +39,7 @@ const tableColumns: TableColumnIf[] = [
 const TodoList = () => {
     const [initialized, setInitialized] = useState(false);
     const [items, setItems] = useState<TodoItem[]>([]);
-    const [addNew, setAddNew] = useState(false);
+
     const [editingId, setEditingId] = useState<number | undefined>(undefined);
     const [formValues, setFormValues] = useState<{
         [key: string]: string | number | boolean;
@@ -69,25 +69,11 @@ const TodoList = () => {
     }, [initialized, getTodoItems]);
 
     const addItem = () => {
-        apiFetchWrapper({
+        return apiFetchWrapper({
             method: "PUT",
             uri: "/api/todo-list",
             body: formValues,
-        })
-            .then(() => {
-                setAddNew(false);
-                getTodoItems();
-                setToast({
-                    message: "Successfully added new item!",
-                    variant: toastVariants.SUCCESS,
-                });
-            })
-            .catch((err) => {
-                setToast({
-                    message: err.message,
-                    variant: toastVariants.ERROR,
-                });
-            });
+        });
     };
 
     const editItem = () => {
@@ -154,8 +140,6 @@ const TodoList = () => {
                 selectedIds={selectedIds}
                 setSelectedIds={setSelectedIds}
                 deleteSelectedItems={deleteSelectedItems}
-                addNew={addNew}
-                setAddNew={setAddNew}
                 editingId={editingId}
                 setEditingId={setEditingId}
                 addItem={addItem}
@@ -163,6 +147,7 @@ const TodoList = () => {
                 itemFormInputs={itemFormInputs}
                 formValues={formValues}
                 setFormValues={setFormValues}
+                reloadItems={getTodoItems}
             />
         </Box>
     );
