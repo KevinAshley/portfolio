@@ -23,8 +23,12 @@ export async function GET(req: Request) {
 export async function PUT(req: Request) {
     try {
         const data = await req.json();
+        const { name, completed } = data;
         await prisma.todoItem.create({
-            data,
+            data: {
+                name,
+                completed,
+            },
         });
         return NextResponse.json({
             success: true,
@@ -37,12 +41,15 @@ export async function PUT(req: Request) {
 export async function POST(req: Request) {
     try {
         const data = await req.json();
-        const { id, ...otherData } = data;
+        const { id, name, completed } = data;
         await prisma.todoItem.update({
             where: {
                 id,
             },
-            data: otherData,
+            data: {
+                name,
+                completed,
+            },
         });
         return NextResponse.json({
             success: true,
