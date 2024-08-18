@@ -12,6 +12,7 @@ const itemFormInputs: InputIf[] = [
         label: "Name",
         id: "name",
         required: true,
+        autoComplete: "off",
     },
 ];
 
