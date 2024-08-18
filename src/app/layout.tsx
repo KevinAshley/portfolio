@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
-import { RouteGroupIf } from "@/sharedComponents/navigator";
 import { MainLayout } from "@/sharedComponents/mainLayout";
 import theme from "../theme";
 import { groupedRoutes } from "../routes";
+import kevinGraySkyCropped from "@images/kevin-gray-sky-cropped.png";
 
 export const metadata: Metadata = {
     title: "Kevin Ashley's Portfolio",
@@ -22,6 +22,7 @@ export default function RootLayout({
             theme={theme}
             groupedRoutes={groupedRoutes}
             websiteName={websiteName}
+            websiteAvatar={kevinGraySkyCropped}
         >
             {children}
         </MainLayout>

@@ -9,19 +9,7 @@ import Typography from "@mui/material/Typography";
 import DotsCanvas from "@/components/dotsCanvas";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/system/Container";
-import kevinGraySky from "@images/kevin-gray-sky.png";
 import sacramentoSkyline from "@images/pexels-photo-12027143-cropped.jpg";
-
-const avatarImageHeight = 160;
-const avatarImageWidth = 160;
-
-const AvatarImage = styled(Image)({
-    width: avatarImageWidth,
-    height: avatarImageHeight,
-    border: "5px solid var(--mui-palette-border)",
-    borderRadius: "50%",
-    objectFit: "cover",
-});
 
 const Home = () => {
     return (
@@ -51,12 +39,6 @@ const Home = () => {
                             "var(--mui-palette-backgroundOverlayTextShadow)",
                     }}
                 >
-                    <AvatarImage
-                        src={kevinGraySky}
-                        alt="kevin gray sky"
-                        width={avatarImageWidth}
-                        height={avatarImageHeight}
-                    />
                     <Typography
                         variant="h1"
                         component="h1"
