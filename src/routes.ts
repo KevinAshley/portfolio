@@ -4,9 +4,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import ScoreboardIcon from "@mui/icons-material/Scoreboard";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
-import CategoryIcon from "@mui/icons-material/Category";
 import Checklist from "@mui/icons-material/Checklist";
 import PeopleIcon from "@mui/icons-material/People";
+import { RouteGroupIf } from "@/sharedComponents/navigator";
 
 export const mainRoutes = [
     {
@@ -14,39 +14,33 @@ export const mainRoutes = [
         route: "/",
         icon: HomeIcon,
     },
-    // {
-    //     label: "Portfolio",
-    //     route: "/portfolio/",
-    //     icon: CategoryIcon,
-    //     suppress: true,
-    // },
 ];
 
 export const portfolioRoutes = [
     {
         label: "Calculator",
-        route: "/calculator/",
+        route: "/calculator",
         icon: CalculateIcon,
         github: "https://github.com/KevinAshley/portfolio/blob/main/src/app/calculator/page.tsx",
         description: "Basic mathematical calculator for quick calculations",
     },
     {
         label: "Cricket Scoreboard",
-        route: "/cricket-scoreboard/",
+        route: "/cricket-scoreboard",
         icon: ScoreboardIcon,
         github: "https://github.com/KevinAshley/portfolio/blob/main/src/app/cricket-scoreboard/page.tsx",
         description: "Scoreboard for the popular dart game known as 'Cricket'",
     },
     {
         label: "Memory Game",
-        route: "/memory-game/",
+        route: "/memory-game",
         icon: PsychologyAltIcon,
         github: "https://github.com/KevinAshley/portfolio/blob/main/src/app/memory-game/page.tsx",
         description: "Test your memory with this card matching game",
     },
     {
         label: "Todo List",
-        route: "/todo-list/",
+        route: "/todo-list",
         icon: Checklist,
         github: "https://github.com/KevinAshley/portfolio/blob/main/src/app/todo-list/page.tsx",
         description: "TODO List that reads and writes to the database",
@@ -56,9 +50,21 @@ export const portfolioRoutes = [
 export const adminRoutes = [
     {
         label: "Users List",
-        route: "/admin/users-list/",
+        route: "/admin/users-list",
         icon: PeopleIcon,
     },
 ];
 
-export const routes = mainRoutes.concat(portfolioRoutes);
+export const groupedRoutes: RouteGroupIf[] = [
+    {
+        routes: mainRoutes,
+    },
+    {
+        label: "Portfolio",
+        routes: portfolioRoutes,
+    },
+    {
+        label: "Admin",
+        routes: adminRoutes,
+    },
+];
