@@ -17,7 +17,9 @@
         "prisma:create_dev_db": "npm run prisma:create_db && npm run prisma:dangerously_unlock_dev_db_permissions",
         "prisma:create_migration_from_schema": "npx prisma migrate dev",
         "prisma:update_prisma_client": "npx prisma generate",
-        "prisma:migrate": "npm run prisma:create_migration_from_schema && npm run prisma:update_prisma_client"
+        "prisma:migrate": "npm run prisma:create_migration_from_schema && npm run prisma:update_prisma_client",
+        "prisma:dev_database_seed": "NODE_ENV=development npx prisma db seed",
+        "prisma:prod_database_seed": "NODE_ENV=production npx prisma db seed"
     },
     "scriptsComments": {
         "docker_build_args: -t": "Assigns a name to the image",
@@ -49,6 +51,10 @@
         "eslint": "^8",
         "eslint-config-next": "14.2.5",
         "prisma": "^5.18.0",
+        "ts-node": "^10.9.2",
         "typescript": "^5"
+    },
+    "prisma": {
+        "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
     }
 }
