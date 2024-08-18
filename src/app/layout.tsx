@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { RouteGroupIf } from "@/sharedComponents/navigator";
 import { MainLayout } from "@/sharedComponents/mainLayout";
 import theme from "../theme";
-import { mainRoutes, portfolioRoutes } from "../routes";
+import { mainRoutes, portfolioRoutes, adminRoutes } from "../routes";
 
 export const metadata: Metadata = {
     title: "Kevin Ashley's Portfolio",
@@ -12,10 +12,13 @@ export const metadata: Metadata = {
 
 const groupedRoutes: RouteGroupIf[] = [
     {
-        routes: [...mainRoutes],
+        routes: mainRoutes,
     },
     {
-        routes: [...portfolioRoutes],
+        routes: portfolioRoutes,
+    },
+    {
+        routes: adminRoutes,
     },
 ];
 

@@ -6,6 +6,7 @@ import ScoreboardIcon from "@mui/icons-material/Scoreboard";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import CategoryIcon from "@mui/icons-material/Category";
 import Checklist from "@mui/icons-material/Checklist";
+import PeopleIcon from "@mui/icons-material/People";
 
 export const mainRoutes = [
     {
@@ -49,6 +50,14 @@ export const portfolioRoutes = [
         icon: Checklist,
         github: "https://github.com/KevinAshley/portfolio/blob/main/src/app/todo-list/page.tsx",
         description: "TODO List that reads and writes to the database",
+    },
+];
+
+export const adminRoutes = [
+    {
+        label: "Users List",
+        route: "/admin/users-list/",
+        icon: PeopleIcon,
     },
 ];
 
