@@ -1,7 +1,6 @@
 "use client";
 
-import DataTable, { TableColumnIf } from "@/sharedComponents/dataTable";
-import ModalForm from "@/sharedComponents/modalForm";
+import { TableColumnIf } from "@/sharedComponents/dataTable";
 import { InputIf } from "@/sharedComponents/form";
 import Box from "@mui/material/Box";
 import { useCallback, useContext, useEffect, useState } from "react";
@@ -11,6 +10,7 @@ import {
     MainContext,
     toastVariants,
 } from "@/sharedComponents/contexts/mainContext";
+import DataTableWithModals from "@/sharedComponents/dataTableWithModals";
 
 const itemFormInputs: InputIf[] = [
     {
@@ -146,34 +146,23 @@ const TodoList = () => {
 
     return (
         <Box maxWidth="md" sx={{ margin: "auto", mt: 5 }}>
-            <DataTable
-                data={items}
-                setAddNewOpen={setAddNew}
-                title={"To-Do List"}
-                selected={selectedIds}
-                setSelected={setSelectedIds}
-                deleteSelected={deleteSelectedItems}
+            <DataTableWithModals
+                tableHeading="To-Do List"
+                singularItemLabel={"To-Do Item"}
+                items={items}
                 tableColumns={tableColumns}
-                defaultOrderBy={"id"}
+                selectedIds={selectedIds}
+                setSelectedIds={setSelectedIds}
+                deleteSelectedItems={deleteSelectedItems}
+                addNew={addNew}
+                setAddNew={setAddNew}
+                editingId={editingId}
                 setEditingId={setEditingId}
-            />
-            <ModalForm
-                title={"Add New To-Do Item"}
-                open={addNew}
-                handleClose={() => setAddNew(false)}
-                handleSubmit={addItem}
-                inputs={itemFormInputs}
-                values={formValues}
-                setValues={setFormValues}
-            />
-            <ModalForm
-                title={"Edit To-Do Item"}
-                open={!!editingId}
-                handleClose={() => setEditingId(undefined)}
-                handleSubmit={editItem}
-                inputs={itemFormInputs}
-                values={formValues}
-                setValues={setFormValues}
+                addItem={addItem}
+                editItem={editItem}
+                itemFormInputs={itemFormInputs}
+                formValues={formValues}
+                setFormValues={setFormValues}
             />
         </Box>
     );
