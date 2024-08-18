@@ -40,7 +40,6 @@ const TodoList = () => {
     const [initialized, setInitialized] = useState(false);
     const [items, setItems] = useState<TodoItem[]>([]);
 
-    const [selectedIds, setSelectedIds] = useState<number[]>([]);
     const { setToast } = useContext(MainContext);
 
     const getTodoItems = useCallback(() => {
@@ -80,39 +79,24 @@ const TodoList = () => {
         });
     };
 
-    const deleteSelectedItems = () => {
-        apiFetchWrapper({
+    const deleteSelectedItems = (selectedIds: number[]) => {
+        return apiFetchWrapper({
             method: "DELETE",
             uri: "/api/todo-list",
             body: {
                 ids: selectedIds,
             },
-        })
-            .then(() => {
-                getTodoItems();
-                setToast({
-                    message: "Successfully deleted items!",
-                    variant: toastVariants.SUCCESS,
-                });
-                setSelectedIds([]);
-            })
-            .catch((err) => {
-                setToast({
-                    message: err.message,
-                    variant: toastVariants.ERROR,
-                });
-            });
+        });
     };
 
     return (
         <Box maxWidth="md" sx={{ margin: "auto", mt: 5 }}>
             <DataTableWithModals
-                tableHeading="To-Do List"
+                tableHeading={"To-Do List"}
                 singularItemLabel={"To-Do Item"}
+                pluralItemsLabel={"To-Do Items"}
                 items={items}
                 tableColumns={tableColumns}
-                selectedIds={selectedIds}
-                setSelectedIds={setSelectedIds}
                 deleteSelectedItems={deleteSelectedItems}
                 addItem={addItem}
                 editItem={editItem}
