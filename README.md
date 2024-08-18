@@ -20,7 +20,7 @@ my preference is to run **_Docker_** for development.
     - Create the SQLite database
 
         ```bash
-        npm run prisma:create_db
+        npm run prisma:create_dev_db
         ```
 
 ## Development
@@ -40,6 +40,21 @@ That's it! You should now have a new **_Docker_** image and a new **_Docker_** c
 Hot reloading and everything should work just as well as if you were running the **_Next.js_** dev script.
 
 Use **_Docker Desktop_** to review the logs, execute terminal commands, stop, start, reboot, etc.
+
+## Database Migrations
+
+After making any change to schema.prisma, run this command (DEV environment only):
+
+```bash
+npm run prisma:migrate
+```
+
+Your DB migration has been created and ran against your DEV database, and your Prisma client has been updated.
+You WILL need to restart your DEV **_Docker_** container.
+
+<span style="color:red">
+TODO: handle Production migration.. I should be able to get this built into the Dockerfile
+</span>
 
 ## Deployment
 

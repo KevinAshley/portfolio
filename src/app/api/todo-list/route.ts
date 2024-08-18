@@ -12,6 +12,7 @@ export async function GET(req: Request) {
                 completed: true,
                 createdAt: true,
                 updatedAt: true,
+                test: true,
             },
         });
         return NextResponse.json(todoItems);
