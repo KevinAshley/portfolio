@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { handleError } from "@/app/api";
+import { handleError } from "@/sharedComponents/nextApi";
 const prisma = new PrismaClient();
 
 export async function GET(req: Request) {

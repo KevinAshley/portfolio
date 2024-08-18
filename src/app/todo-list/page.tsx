@@ -3,7 +3,7 @@
 import { TableColumnIf } from "@/sharedComponents/dataTable";
 import { FormValuesIf, InputIf } from "@/sharedComponents/form";
 import Box from "@mui/material/Box";
-import { apiFetchWrapper } from "@/app/api";
+import { apiFetchWrapper } from "@/sharedComponents/nextApi";
 import DataTableWithModals from "@/sharedComponents/dataTableWithModals";
 
 const itemFormInputs: InputIf[] = [
