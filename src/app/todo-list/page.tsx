@@ -1,7 +1,7 @@
 "use client";
 
 import { TableColumnIf } from "@/sharedComponents/dataTable";
-import { InputIf } from "@/sharedComponents/form";
+import { FormValuesIf, InputIf } from "@/sharedComponents/form";
 import Box from "@mui/material/Box";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { TodoItem } from "@prisma/client";
@@ -40,10 +40,7 @@ const TodoList = () => {
     const [initialized, setInitialized] = useState(false);
     const [items, setItems] = useState<TodoItem[]>([]);
 
-    const [editingId, setEditingId] = useState<number | undefined>(undefined);
-    const [formValues, setFormValues] = useState<{
-        [key: string]: string | number | boolean;
-    }>({});
+    const [formValues, setFormValues] = useState<FormValuesIf>({});
     const [selectedIds, setSelectedIds] = useState<number[]>([]);
     const { setToast } = useContext(MainContext);
 
@@ -77,25 +74,11 @@ const TodoList = () => {
     };
 
     const editItem = () => {
-        apiFetchWrapper({
+        return apiFetchWrapper({
             method: "POST",
             uri: "/api/todo-list",
             body: formValues,
-        })
-            .then(() => {
-                setEditingId(undefined);
-                getTodoItems();
-                setToast({
-                    message: "Successfully edited item!",
-                    variant: toastVariants.SUCCESS,
-                });
-            })
-            .catch((err) => {
-                setToast({
-                    message: err.message,
-                    variant: toastVariants.ERROR,
-                });
-            });
+        });
     };
 
     const deleteSelectedItems = () => {
@@ -122,14 +105,6 @@ const TodoList = () => {
             });
     };
 
-    useEffect(() => {
-        if (editingId) {
-            setFormValues(items.find((item) => item.id == editingId) || {});
-        } else {
-            setFormValues({});
-        }
-    }, [items, editingId]);
-
     return (
         <Box maxWidth="md" sx={{ margin: "auto", mt: 5 }}>
             <DataTableWithModals
@@ -140,14 +115,12 @@ const TodoList = () => {
                 selectedIds={selectedIds}
                 setSelectedIds={setSelectedIds}
                 deleteSelectedItems={deleteSelectedItems}
-                editingId={editingId}
-                setEditingId={setEditingId}
                 addItem={addItem}
                 editItem={editItem}
                 itemFormInputs={itemFormInputs}
                 formValues={formValues}
                 setFormValues={setFormValues}
-                reloadItems={getTodoItems}
+                loadItems={getTodoItems}
             />
         </Box>
     );
