@@ -3,13 +3,7 @@
 import { TableColumnIf } from "@/sharedComponents/dataTable";
 import { FormValuesIf, InputIf } from "@/sharedComponents/form";
 import Box from "@mui/material/Box";
-import { useCallback, useContext, useEffect, useState } from "react";
-import { TodoItem } from "@prisma/client";
 import { apiFetchWrapper } from "@/app/api";
-import {
-    MainContext,
-    toastVariants,
-} from "@/sharedComponents/contexts/mainContext";
 import DataTableWithModals from "@/sharedComponents/dataTableWithModals";
 
 const itemFormInputs: InputIf[] = [
@@ -37,31 +31,12 @@ const tableColumns: TableColumnIf[] = [
 ];
 
 const TodoList = () => {
-    const [initialized, setInitialized] = useState(false);
-    const [items, setItems] = useState<TodoItem[]>([]);
-
-    const { setToast } = useContext(MainContext);
-
-    const getTodoItems = useCallback(() => {
-        apiFetchWrapper({
+    const getItems = () => {
+        return apiFetchWrapper({
             method: "GET",
             uri: "/api/todo-list",
-        })
-            .then(setItems)
-            .catch((err) => {
-                setToast({
-                    message: err.message,
-                    variant: toastVariants.ERROR,
-                });
-            });
-    }, [setToast]);
-
-    useEffect(() => {
-        if (!initialized) {
-            getTodoItems();
-            setInitialized(true);
-        }
-    }, [initialized, getTodoItems]);
+        });
+    };
 
     const addItem = (formValues: FormValuesIf) => {
         return apiFetchWrapper({
@@ -95,13 +70,12 @@ const TodoList = () => {
                 tableHeading={"To-Do List"}
                 singularItemLabel={"To-Do Item"}
                 pluralItemsLabel={"To-Do Items"}
-                items={items}
                 tableColumns={tableColumns}
                 deleteSelectedItems={deleteSelectedItems}
                 addItem={addItem}
                 editItem={editItem}
                 itemFormInputs={itemFormInputs}
-                loadItems={getTodoItems}
+                getItems={getItems}
             />
         </Box>
     );
