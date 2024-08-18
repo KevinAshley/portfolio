@@ -14,6 +14,12 @@ const itemFormInputs: InputIf[] = [
         required: true,
         autoComplete: "off",
     },
+    {
+        type: "checkbox",
+        label: "Completed",
+        id: "completed",
+        required: false,
+    },
 ];
 
 const tableColumns: TableColumnIf[] = [
