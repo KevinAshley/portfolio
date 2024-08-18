@@ -10,6 +10,8 @@ export async function GET(req: Request) {
                 id: true,
                 name: true,
                 completed: true,
+                createdAt: true,
+                updatedAt: true,
             },
         });
         return NextResponse.json(todoItems);

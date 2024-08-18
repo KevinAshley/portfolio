@@ -14,7 +14,9 @@
         "docker:run": "docker run -dp 3000:3000 --mount type=bind,src='./prisma/database',target=/app/prisma/database production_image",
         "prisma:create_db": "npx prisma migrate dev --name create_db",
         "prisma:dangerously_unlock_dev_db_permissions": "chmod -R 777 prisma/database",
-        "prisma:create_dev_db": "npm run prisma:create_db && npm run prisma:dangerously_unlock_dev_db_permissions"
+        "prisma:create_dev_db": "npm run prisma:create_db && npm run prisma:dangerously_unlock_dev_db_permissions",
+        "prisma:create_migration_from_schema": "npx prisma migrate dev",
+        "prisma:update_prisma_client": "npx prisma generate"
     },
     "scriptsComments": {
         "docker_build_args: -t": "Assigns a name to the image",
