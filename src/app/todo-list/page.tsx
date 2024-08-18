@@ -40,7 +40,6 @@ const TodoList = () => {
     const [initialized, setInitialized] = useState(false);
     const [items, setItems] = useState<TodoItem[]>([]);
 
-    const [formValues, setFormValues] = useState<FormValuesIf>({});
     const [selectedIds, setSelectedIds] = useState<number[]>([]);
     const { setToast } = useContext(MainContext);
 
@@ -65,7 +64,7 @@ const TodoList = () => {
         }
     }, [initialized, getTodoItems]);
 
-    const addItem = () => {
+    const addItem = (formValues: FormValuesIf) => {
         return apiFetchWrapper({
             method: "PUT",
             uri: "/api/todo-list",
@@ -73,7 +72,7 @@ const TodoList = () => {
         });
     };
 
-    const editItem = () => {
+    const editItem = (formValues: FormValuesIf) => {
         return apiFetchWrapper({
             method: "POST",
             uri: "/api/todo-list",
@@ -118,8 +117,6 @@ const TodoList = () => {
                 addItem={addItem}
                 editItem={editItem}
                 itemFormInputs={itemFormInputs}
-                formValues={formValues}
-                setFormValues={setFormValues}
                 loadItems={getTodoItems}
             />
         </Box>
