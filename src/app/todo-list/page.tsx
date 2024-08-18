@@ -1,6 +1,6 @@
 "use client";
 
-import { TableColumnIf } from "@/sharedComponents/dataTable";
+import { ColumnType, TableColumnIf } from "@/sharedComponents/dataTable";
 import { FormValuesIf, InputIf } from "@/sharedComponents/form";
 import Box from "@mui/material/Box";
 import { apiFetchWrapper, ApiMethod } from "@/sharedComponents/nextApi";
@@ -20,14 +20,17 @@ const tableColumns: TableColumnIf[] = [
     {
         label: "Id",
         id: "id",
+        type: ColumnType.TEXT,
     },
     {
         label: "Name",
         id: "name",
+        type: ColumnType.TEXT,
     },
     {
         label: "Completed",
         id: "completed",
+        type: ColumnType.BOOLEAN,
     },
 ];
 
