@@ -2,7 +2,6 @@
 
 import { ColumnType, TableColumnIf } from "@/sharedComponents/dataTable";
 import { FormValuesIf, InputIf } from "@/sharedComponents/form";
-import Box from "@mui/material/Box";
 import { apiFetchWrapper, ApiMethod } from "@/sharedComponents/nextApi";
 import DataTableWithModals from "@/sharedComponents/dataTableWithModals";
 
@@ -75,19 +74,17 @@ const TodoList = () => {
     };
 
     return (
-        <Box maxWidth="md" sx={{ margin: "auto", mt: 5 }}>
-            <DataTableWithModals
-                tableHeading={"To-Do List"}
-                singularItemLabel={"To-Do Item"}
-                pluralItemsLabel={"To-Do Items"}
-                tableColumns={tableColumns}
-                deleteSelectedItems={deleteSelectedItems}
-                addItem={addItem}
-                editItem={editItem}
-                itemFormInputs={itemFormInputs}
-                getItems={getItems}
-            />
-        </Box>
+        <DataTableWithModals
+            tableHeading={"To-Do List"}
+            singularItemLabel={"To-Do Item"}
+            pluralItemsLabel={"To-Do Items"}
+            tableColumns={tableColumns}
+            deleteSelectedItems={deleteSelectedItems}
+            addItem={addItem}
+            editItem={editItem}
+            itemFormInputs={itemFormInputs}
+            getItems={getItems}
+        />
     );
 };
 

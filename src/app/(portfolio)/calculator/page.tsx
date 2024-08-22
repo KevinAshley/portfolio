@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import GithubLinkout from "../../components/githubLinkout";
+import GithubLinkout from "@/components/githubLinkout";
 const numKeysArray = new Array(9).fill(0);
 
 const Calculator = () => {
