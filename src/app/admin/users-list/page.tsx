@@ -75,19 +75,17 @@ const UsersList = () => {
     };
 
     return (
-        <Box maxWidth="md" sx={{ margin: "auto", mt: 5 }}>
-            <DataTableWithModals
-                tableHeading={"Users List"}
-                singularItemLabel={"User"}
-                pluralItemsLabel={"Users"}
-                tableColumns={tableColumns}
-                deleteSelectedItems={deleteSelectedItems}
-                addItem={addItem}
-                editItem={editItem}
-                itemFormInputs={itemFormInputs}
-                getItems={getItems}
-            />
-        </Box>
+        <DataTableWithModals
+            tableHeading={"Users List"}
+            singularItemLabel={"User"}
+            pluralItemsLabel={"Users"}
+            tableColumns={tableColumns}
+            deleteSelectedItems={deleteSelectedItems}
+            addItem={addItem}
+            editItem={editItem}
+            itemFormInputs={itemFormInputs}
+            getItems={getItems}
+        />
     );
 };
 
