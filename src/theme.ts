@@ -67,6 +67,8 @@ const theme = extendTheme(baseTheme, {
                 backgroundOverlayGradientTwo: "rgba(255,255,255,0.85)",
                 backgroundOverlayTextShadow: "0px 0px 30px white",
                 ribbon: "#efefef",
+                paletteSwitchIconColor: "red",
+                paletteSwitchBackgroundColor: "white",
             },
         },
         dark: {
@@ -81,6 +83,8 @@ const theme = extendTheme(baseTheme, {
                 backgroundOverlayGradientTwo: "rgba(30,0,43,0.7)",
                 backgroundOverlayTextShadow: "0px 0px 30px black",
                 ribbon: grey["800"],
+                paletteSwitchIconColor: "white",
+                paletteSwitchBackgroundColor: "black",
             },
         },
     },
