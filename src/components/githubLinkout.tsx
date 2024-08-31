@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 const GithubLinkout = () => {
     const pathname = usePathname();
     const portfolioEntry = portfolioRoutes.find((item) =>
-        item.route.includes(pathname)
+        item.path.includes(pathname)
     );
     const githubUrl = portfolioEntry?.github;
     if (!githubUrl) {
