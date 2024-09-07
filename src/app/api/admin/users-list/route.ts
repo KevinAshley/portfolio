@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { handleError } from "@/sharedComponents/nextApi";
+import { getIdFromNextRequest, handleError } from "@/sharedComponents/nextApi";
+import { createPasswordHash } from "@/sharedComponents/nextApi/authentication";
 const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
@@ -10,6 +11,7 @@ export async function GET(req: Request) {
                 id: true,
                 name: true,
                 email: true,
+                password: true,
                 createdAt: true,
                 updatedAt: true,
             },
@@ -23,11 +25,12 @@ export async function GET(req: Request) {
 export async function PUT(req: Request) {
     try {
         const data = await req.json();
-        const { name, email } = data;
+        const { name, email, password } = data;
         await prisma.user.create({
             data: {
                 name,
                 email,
+                password: createPasswordHash(password),
             },
         });
         return NextResponse.json({
@@ -41,15 +44,12 @@ export async function PUT(req: Request) {
 export async function POST(req: Request) {
     try {
         const data = await req.json();
-        const { id, name, email } = data;
+        const id = getIdFromNextRequest(req);
         await prisma.user.update({
             where: {
                 id,
             },
-            data: {
-                name,
-                email,
-            },
+            data,
         });
         return NextResponse.json({
             success: true,

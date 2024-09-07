@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { handleError } from "@/sharedComponents/nextApi";
+import { getIdFromNextRequest, handleError } from "@/sharedComponents/nextApi";
 const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
@@ -41,15 +41,12 @@ export async function PUT(req: Request) {
 export async function POST(req: Request) {
     try {
         const data = await req.json();
-        const { id, name, completed } = data;
+        const id = getIdFromNextRequest(req);
         await prisma.todoItem.update({
             where: {
                 id,
             },
-            data: {
-                name,
-                completed,
-            },
+            data,
         });
         return NextResponse.json({
             success: true,

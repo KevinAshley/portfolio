@@ -19,6 +19,12 @@ const itemFormInputs: InputIf[] = [
         id: "email",
         required: false,
     },
+    {
+        type: "text",
+        label: "Password",
+        id: "password",
+        required: false,
+    },
 ];
 
 const tableColumns: TableColumnIf[] = [
@@ -35,6 +41,11 @@ const tableColumns: TableColumnIf[] = [
     {
         label: "Email",
         id: "email",
+        type: ColumnType.TEXT,
+    },
+    {
+        label: "Password",
+        id: "password",
         type: ColumnType.TEXT,
     },
 ];
@@ -55,11 +66,17 @@ const UsersList = () => {
         });
     };
 
-    const editItem = (formValues: FormValuesIf) => {
+    const editItem = ({
+        id,
+        changedValues,
+    }: {
+        id: number;
+        changedValues: FormValuesIf;
+    }) => {
         return apiFetchWrapper({
             method: ApiMethod.POST,
-            uri: "/api/admin/users-list",
-            body: formValues,
+            uri: `/api/admin/users-list?id=${id}`,
+            body: changedValues,
         });
     };
 

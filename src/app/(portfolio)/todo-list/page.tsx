@@ -54,11 +54,17 @@ const TodoList = () => {
         });
     };
 
-    const editItem = (formValues: FormValuesIf) => {
+    const editItem = ({
+        id,
+        changedValues,
+    }: {
+        id: number;
+        changedValues: FormValuesIf;
+    }) => {
         return apiFetchWrapper({
             method: ApiMethod.POST,
-            uri: "/api/todo-list",
-            body: formValues,
+            uri: `/api/todo-list?id=${id}`,
+            body: changedValues,
         });
     };
 
