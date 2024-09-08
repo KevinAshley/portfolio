@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 import { getUniqueIdString, handleError } from "@/sharedComponents/nextApi";
 import { cookies } from "next/headers";
 import {
@@ -29,10 +29,58 @@ export async function GET(req: Request) {
     }
 }
 
+const setUserSession = async ({ req, user }: { req: Request; user: User }) => {
+    // create a sessionId, hash it, save to db, and set JWT
+    return new Promise(async (resolve, reject) => {
+        try {
+            const sessionId = getUniqueIdString();
+            const userAgent =
+                req.headers.get("User-Agent") || "User_Agent_Missing";
+            const ip =
+                req.headers.get("X-Forwarded-For") || "IP_address_Missing";
+
+            await prisma.user.update({
+                where: {
+                    id: user.id,
+                },
+                data: {
+                    session_id: sessionId,
+                    session_expires: moment().add(1, "days").toDate(),
+                },
+            });
+            // put the session ID in a JWT, and set in a cookie
+            const sessionToken = jwt.sign(
+                {
+                    userId: user.id,
+                    sessionHash: createSessionHash(sessionId, userAgent, ip),
+                },
+                jwtPrivateKey
+            );
+            cookies().set("sessionToken", sessionToken, {
+                secure: true,
+                maxAge: 86400000,
+                httpOnly: true,
+            });
+            resolve(true);
+        } catch (e: any) {
+            reject(e.message);
+        }
+    });
+};
+
 export async function POST(req: Request) {
     try {
-        // NEW USER!!!
+        // New User Signup
         const data = await req.json();
+        const { name, email, password } = data;
+        const user = await prisma.user.create({
+            data: {
+                name,
+                email,
+                password: createPasswordHash(password),
+            },
+        });
+        await setUserSession({ req, user });
         return NextResponse.json({
             test: true,
         });
@@ -44,7 +92,6 @@ export async function POST(req: Request) {
 export async function PATCH(req: Request) {
     try {
         // Log In
-        // set the session token
         const genericFailureMessage = "Invalid email or password";
         const data = await req.json();
         const { email, password } = data;
@@ -56,35 +103,7 @@ export async function PATCH(req: Request) {
         if (!user || createPasswordHash(password) !== user.password) {
             throw new Error(genericFailureMessage);
         }
-
-        // create a sessionId, hash it, and save it to the db.
-        const sessionId = getUniqueIdString();
-        const userAgent = req.headers.get("User-Agent") || "User_Agent_Missing";
-        const ip = req.headers.get("X-Forwarded-For") || "IP_address_Missing";
-
-        await prisma.user.update({
-            where: {
-                id: user.id,
-            },
-            data: {
-                session_id: sessionId,
-                session_expires: moment().add(1, "days").toDate(),
-            },
-        });
-        // put the session ID in a JWT, and set in a cookie
-        const sessionToken = jwt.sign(
-            {
-                userId: user.id,
-                sessionHash: createSessionHash(sessionId, userAgent, ip),
-            },
-            jwtPrivateKey
-        );
-
-        cookies().set("sessionToken", sessionToken, {
-            secure: true,
-            maxAge: 86400000,
-            httpOnly: true,
-        });
+        await setUserSession({ req, user });
         return NextResponse.json({
             test: true,
         });
@@ -96,7 +115,6 @@ export async function PATCH(req: Request) {
 export async function DELETE(req: Request, res: Response) {
     try {
         // Log Out
-        // clear the sessionToken
         cookies().delete("sessionToken");
         return NextResponse.json({
             test: true,
