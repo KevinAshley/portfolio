@@ -60,7 +60,7 @@ const UsersList = () => {
 
     const addItem = (formValues: FormValuesIf) => {
         return apiFetchWrapper({
-            method: ApiMethod.PUT,
+            method: ApiMethod.POST,
             uri: "/api/admin/users-list",
             body: formValues,
         });
@@ -74,7 +74,7 @@ const UsersList = () => {
         changedValues: FormValuesIf;
     }) => {
         return apiFetchWrapper({
-            method: ApiMethod.POST,
+            method: ApiMethod.PATCH,
             uri: `/api/admin/users-list?id=${id}`,
             body: changedValues,
         });

@@ -48,7 +48,7 @@ const TodoList = () => {
 
     const addItem = (formValues: FormValuesIf) => {
         return apiFetchWrapper({
-            method: ApiMethod.PUT,
+            method: ApiMethod.POST,
             uri: "/api/todo-list",
             body: formValues,
         });
@@ -62,7 +62,7 @@ const TodoList = () => {
         changedValues: FormValuesIf;
     }) => {
         return apiFetchWrapper({
-            method: ApiMethod.POST,
+            method: ApiMethod.PATCH,
             uri: `/api/todo-list?id=${id}`,
             body: changedValues,
         });

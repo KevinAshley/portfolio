@@ -22,7 +22,7 @@ export async function GET(req: Request) {
     }
 }
 
-export async function PUT(req: Request) {
+export async function POST(req: Request) {
     try {
         const data = await req.json();
         const { name, email, password } = data;
@@ -41,7 +41,7 @@ export async function PUT(req: Request) {
     }
 }
 
-export async function POST(req: Request) {
+export async function PATCH(req: Request) {
     try {
         let data = await req.json();
         const id = getIdFromNextRequest(req);
