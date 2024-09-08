@@ -5,29 +5,20 @@ import { cookies } from "next/headers";
 import {
     createPasswordHash,
     createSessionHash,
+    getUserIdFromCookies,
+    jwtPrivateKey,
 } from "@/sharedComponents/nextApi/authentication";
 import jwt from "jsonwebtoken";
 import moment from "moment";
-const isProduction = process.env.NODE_ENV === "production";
-
-const jwtPrivateKey =
-    (isProduction
-        ? process.env.JWT_PRIVATE_KEY_PROD
-        : process.env.JWT_PRIVATE_KEY_DEV) || "jwt_private_key_fallback";
 
 const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
     try {
-        const cookieStore = cookies();
-        const sessionToken = cookieStore.get("sessionToken");
-        const decodedToken: any = jwt.verify(
-            sessionToken?.value || "",
-            jwtPrivateKey
-        );
+        const userId = getUserIdFromCookies();
         const user = await prisma.user.findUnique({
             where: {
-                id: decodedToken?.userId,
+                id: userId,
             },
         });
         return NextResponse.json(user);

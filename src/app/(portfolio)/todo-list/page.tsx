@@ -1,9 +1,10 @@
 "use client";
-
+import { useContext } from "react";
 import { ColumnType, TableColumnIf } from "@/sharedComponents/dataTable";
 import { FormValuesIf, InputIf } from "@/sharedComponents/form";
 import { apiFetchWrapper, ApiMethod } from "@/sharedComponents/nextApi";
 import DataTableWithModals from "@/sharedComponents/dataTableWithModals";
+import { UserContext } from "@/sharedComponents/contexts/userContext";
 
 const itemFormInputs: InputIf[] = [
     {
@@ -39,6 +40,8 @@ const tableColumns: TableColumnIf[] = [
 ];
 
 const TodoList = () => {
+    const { user } = useContext(UserContext);
+
     const getItems = () => {
         return apiFetchWrapper({
             method: ApiMethod.GET,
@@ -89,6 +92,8 @@ const TodoList = () => {
             editItem={editItem}
             itemFormInputs={itemFormInputs}
             getItems={getItems}
+            key={user?.id}
+            // ^ force the table to re-mount if the user changes
         />
     );
 };

@@ -16,6 +16,7 @@ model User {
   email String  @unique
   name  String?
   posts Post[]
+  todoItems TodoItem[]
   password String @default("")
   session_id String @default("")
   session_expires DateTime?
@@ -38,6 +39,8 @@ model TodoItem {
   id        Int     @id @default(autoincrement())
   name      String
   completed Boolean @default(false)
+  user      User    @relation(fields: [userId], references: [id])
+  userId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }
