@@ -17,12 +17,18 @@ const itemFormInputs: InputIf[] = [
         type: "email",
         label: "Email",
         id: "email",
-        required: false,
+        required: true,
     },
     {
         type: "text",
         label: "Password",
         id: "password",
+        required: false,
+    },
+    {
+        type: "checkbox",
+        label: "Admin",
+        id: "admin",
         required: false,
     },
 ];
@@ -44,9 +50,9 @@ const tableColumns: TableColumnIf[] = [
         type: ColumnType.TEXT,
     },
     {
-        label: "Password",
-        id: "password",
-        type: ColumnType.TEXT,
+        label: "Admin",
+        id: "admin",
+        type: ColumnType.BOOLEAN,
     },
 ];
 

@@ -6,12 +6,13 @@ const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
     try {
+        // get users list
         const users = await prisma.user.findMany({
             select: {
                 id: true,
                 name: true,
                 email: true,
-                password: true,
+                admin: true,
                 createdAt: true,
                 updatedAt: true,
             },
@@ -24,13 +25,15 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
     try {
+        // add user
         const data = await req.json();
-        const { name, email, password } = data;
+        const { name, email, password, admin } = data;
         await prisma.user.create({
             data: {
                 name,
                 email,
                 password: createPasswordHash(password),
+                admin,
             },
         });
         return NextResponse.json({
@@ -43,10 +46,14 @@ export async function POST(req: Request) {
 
 export async function PATCH(req: Request) {
     try {
+        // update user
         let data = await req.json();
         const id = getIdParamFromRequest(req);
         if (data.password) {
             data.password = createPasswordHash(data.password);
+        } else {
+            // never set an empty string
+            delete data.password;
         }
         await prisma.user.update({
             where: {
@@ -64,6 +71,7 @@ export async function PATCH(req: Request) {
 
 export async function DELETE(req: Request) {
     try {
+        // delete users
         const data = await req.json();
         await prisma.user.deleteMany({
             where: {
