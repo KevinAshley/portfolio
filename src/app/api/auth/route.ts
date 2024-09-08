@@ -31,6 +31,18 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
     try {
+        // NEW USER!!!
+        const data = await req.json();
+        return NextResponse.json({
+            test: true,
+        });
+    } catch (error: unknown) {
+        return handleError(error);
+    }
+}
+
+export async function PATCH(req: Request) {
+    try {
         // Log In
         // set the session token
         const genericFailureMessage = "Invalid email or password";
