@@ -1,10 +1,14 @@
 "use client";
 
 import { ColumnType, TableColumnIf } from "@/sharedComponents/dataTable";
-import { FormValuesIf, InputIf } from "@/sharedComponents/form";
-import Box from "@mui/material/Box";
-import { apiFetchWrapper, ApiMethod } from "@/sharedComponents/nextApi";
+import { InputIf } from "@/sharedComponents/form";
 import DataTableWithModals from "@/sharedComponents/dataTableWithModals";
+import {
+    getUsers,
+    addUser,
+    editUser,
+    deleteUsers,
+} from "@/app/lib/actions/usersList";
 
 const itemFormInputs: InputIf[] = [
     {
@@ -57,56 +61,17 @@ const tableColumns: TableColumnIf[] = [
 ];
 
 const UsersList = () => {
-    const getItems = () => {
-        return apiFetchWrapper({
-            method: ApiMethod.GET,
-            uri: "/api/admin/users-list",
-        });
-    };
-
-    const addItem = (formValues: FormValuesIf) => {
-        return apiFetchWrapper({
-            method: ApiMethod.POST,
-            uri: "/api/admin/users-list",
-            body: formValues,
-        });
-    };
-
-    const editItem = ({
-        id,
-        changedValues,
-    }: {
-        id: number;
-        changedValues: FormValuesIf;
-    }) => {
-        return apiFetchWrapper({
-            method: ApiMethod.PATCH,
-            uri: `/api/admin/users-list?id=${id}`,
-            body: changedValues,
-        });
-    };
-
-    const deleteSelectedItems = (selectedIds: number[]) => {
-        return apiFetchWrapper({
-            method: ApiMethod.DELETE,
-            uri: "/api/admin/users-list",
-            body: {
-                ids: selectedIds,
-            },
-        });
-    };
-
     return (
         <DataTableWithModals
             tableHeading={"Users List"}
             singularItemLabel={"User"}
             pluralItemsLabel={"Users"}
             tableColumns={tableColumns}
-            deleteSelectedItems={deleteSelectedItems}
-            addItem={addItem}
-            editItem={editItem}
+            deleteSelectedItems={deleteUsers}
+            addItem={addUser}
+            editItem={editUser}
             itemFormInputs={itemFormInputs}
-            getItems={getItems}
+            getItems={getUsers}
         />
     );
 };

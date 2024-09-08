@@ -4,7 +4,7 @@ import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 import { auth } from "@/auth";
 import { FormValuesIf } from "@/sharedComponents/form";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -43,5 +43,11 @@ export async function userLogout() {
         await signOut();
     } catch (error) {
         throw error;
+    }
+}
+
+export async function throwErrorIfUserIsNotAdmin(user: User) {
+    if (!user.admin) {
+        throw new Error("Forbidden: only admins can access this resource");
     }
 }

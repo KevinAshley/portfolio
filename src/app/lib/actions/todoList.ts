@@ -23,7 +23,7 @@ export async function getTodoItems() {
     return todoItems;
 }
 
-export async function createTodoItem(data: FormValuesIf) {
+export async function addTodoItem(data: FormValuesIf) {
     const user = await getAuthUser();
     const { name, completed } = data as TodoItem;
     await prisma.todoItem.create({

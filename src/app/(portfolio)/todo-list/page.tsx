@@ -1,8 +1,7 @@
 "use client";
 import { useContext } from "react";
 import { ColumnType, TableColumnIf } from "@/sharedComponents/dataTable";
-import { FormValuesIf, InputIf } from "@/sharedComponents/form";
-import { apiFetchWrapper, ApiMethod } from "@/sharedComponents/nextApi";
+import { InputIf } from "@/sharedComponents/form";
 import DataTableWithModals from "@/sharedComponents/dataTableWithModals";
 import DataTable from "@/sharedComponents/dataTable";
 import { UserContext } from "@/sharedComponents/contexts/userContext";
@@ -11,7 +10,7 @@ import ReportIcon from "@mui/icons-material/Report";
 import Typography from "@mui/material/Typography";
 import {
     getTodoItems,
-    createTodoItem,
+    addTodoItem,
     editTodoItem,
     deleteTodoItems,
 } from "@/app/lib/actions/todoList";
@@ -98,7 +97,7 @@ const TodoList = () => {
             pluralItemsLabel={"To-Do Items"}
             tableColumns={tableColumns}
             deleteSelectedItems={deleteTodoItems}
-            addItem={createTodoItem}
+            addItem={addTodoItem}
             editItem={editTodoItem}
             itemFormInputs={itemFormInputs}
             getItems={getTodoItems}
