@@ -44,7 +44,7 @@ const tableColumns: TableColumnIf[] = [
 ];
 
 const TodoList = () => {
-    const { user } = useContext(UserContext);
+    const { authenticating, user } = useContext(UserContext);
 
     const getItems = () => {
         return apiFetchWrapper({
@@ -119,7 +119,7 @@ const TodoList = () => {
                         </Box>
                     </Box>
                 }
-                key={0}
+                loading={authenticating}
             />
         );
     }
