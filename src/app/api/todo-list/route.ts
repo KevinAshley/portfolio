@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { getIdFromNextRequest, handleError } from "@/sharedComponents/nextApi";
+import { getIdParamFromRequest, handleError } from "@/sharedComponents/nextApi";
 import { getUserIdFromCookies } from "@/sharedComponents/nextApi/authentication";
 const prisma = new PrismaClient();
 
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 export async function PATCH(req: Request) {
     try {
         const data = await req.json();
-        const id = getIdFromNextRequest(req);
+        const id = getIdParamFromRequest(req);
         await prisma.todoItem.update({
             where: {
                 id,
