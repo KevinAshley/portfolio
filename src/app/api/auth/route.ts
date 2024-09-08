@@ -19,18 +19,21 @@ const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
     try {
+        const cookieStore = cookies();
+        const sessionToken = cookieStore.get("sessionToken");
+        const decodedToken: any = jwt.verify(
+            sessionToken?.value || "",
+            jwtPrivateKey
+        );
         const user = await prisma.user.findUnique({
             where: {
-                email: "kashley3141@gmail.com",
-            },
-            select: {
-                name: true,
-                email: true,
+                id: decodedToken?.userId,
             },
         });
-        // if the sessionToken is not valid, clearCookie and return an error
         return NextResponse.json(user);
     } catch (error: unknown) {
+        // if the sessionToken is not valid, clearCookie and return an error
+        cookies().delete("sessionToken");
         return handleError(error);
     }
 }
