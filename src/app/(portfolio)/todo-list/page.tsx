@@ -9,6 +9,12 @@ import { UserContext } from "@/sharedComponents/contexts/userContext";
 import Box from "@mui/material/Box";
 import ReportIcon from "@mui/icons-material/Report";
 import Typography from "@mui/material/Typography";
+import {
+    getTodoItems,
+    createTodoItem,
+    editTodoItem,
+    deleteTodoItems,
+} from "@/app/lib/actions/todoList";
 
 const itemFormInputs: InputIf[] = [
     {
@@ -45,45 +51,6 @@ const tableColumns: TableColumnIf[] = [
 
 const TodoList = () => {
     const { authenticating, user } = useContext(UserContext);
-
-    const getItems = () => {
-        return apiFetchWrapper({
-            method: ApiMethod.GET,
-            uri: "/api/todo-list",
-        });
-    };
-
-    const addItem = (formValues: FormValuesIf) => {
-        return apiFetchWrapper({
-            method: ApiMethod.POST,
-            uri: "/api/todo-list",
-            body: formValues,
-        });
-    };
-
-    const editItem = ({
-        id,
-        changedValues,
-    }: {
-        id: number;
-        changedValues: FormValuesIf;
-    }) => {
-        return apiFetchWrapper({
-            method: ApiMethod.PATCH,
-            uri: `/api/todo-list?id=${id}`,
-            body: changedValues,
-        });
-    };
-
-    const deleteSelectedItems = (selectedIds: number[]) => {
-        return apiFetchWrapper({
-            method: ApiMethod.DELETE,
-            uri: "/api/todo-list",
-            body: {
-                ids: selectedIds,
-            },
-        });
-    };
 
     if (!user) {
         return (
@@ -130,11 +97,11 @@ const TodoList = () => {
             singularItemLabel={"To-Do Item"}
             pluralItemsLabel={"To-Do Items"}
             tableColumns={tableColumns}
-            deleteSelectedItems={deleteSelectedItems}
-            addItem={addItem}
-            editItem={editItem}
+            deleteSelectedItems={deleteTodoItems}
+            addItem={createTodoItem}
+            editItem={editTodoItem}
             itemFormInputs={itemFormInputs}
-            getItems={getItems}
+            getItems={getTodoItems}
             key={user?.id}
             // ^ force the table to re-mount if the user changes
         />
