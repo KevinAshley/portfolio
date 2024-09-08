@@ -31,7 +31,7 @@ export async function addUser(data: FormValuesIf) {
         data: {
             name,
             email,
-            password: createPasswordHash(password),
+            password: await createPasswordHash(password),
             admin,
         },
     });
@@ -49,7 +49,7 @@ export async function editUser({
     let data = changedValues;
     // update user
     if (data.password) {
-        data.password = createPasswordHash(data.password as string);
+        data.password = await createPasswordHash(data.password as string);
     } else {
         // never set an empty string
         delete data.password;

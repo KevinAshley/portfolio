@@ -13,7 +13,7 @@ export const { auth, signIn, signOut } = NextAuth({
             async authorize(credentials) {
                 const parsedCredentials = z
                     .object({
-                        email: z.string().email(),
+                        email: z.string(),
                         password: z.string(),
                     })
                     .safeParse(credentials);
@@ -27,7 +27,8 @@ export const { auth, signIn, signOut } = NextAuth({
 
                     if (user) {
                         const passwordsMatch =
-                            createPasswordHash(password) == user.password;
+                            (await createPasswordHash(password)) ==
+                            user.password;
                         if (passwordsMatch) {
                             return {
                                 name: user.name,

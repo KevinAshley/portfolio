@@ -13,7 +13,9 @@ async function main() {
             data: {
                 email: process.env.ADMIN_EMAIL,
                 name: process.env.ADMIN_NAME,
-                password: createPasswordHash(process.env.ADMIN_TEMP_PASSWORD),
+                password: await createPasswordHash(
+                    process.env.ADMIN_TEMP_PASSWORD
+                ),
             },
         });
     } else {
