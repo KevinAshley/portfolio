@@ -23,6 +23,15 @@ export async function getAuthUser() {
     throw new Error("Invalid Auth User");
 }
 
+export async function getAuthUserOrUndefined() {
+    try {
+        const user = await getAuthUser();
+        return user;
+    } catch (error) {
+        return undefined;
+    }
+}
+
 export async function userLogin(values: FormValuesIf) {
     try {
         const formData = new FormData();
