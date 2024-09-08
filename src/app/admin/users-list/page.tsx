@@ -8,7 +8,7 @@ import {
     addUser,
     editUser,
     deleteUsers,
-} from "@/app/lib/actions/usersList";
+} from "@/sharedComponents/lib/actions/usersList";
 
 const itemFormInputs: InputIf[] = [
     {

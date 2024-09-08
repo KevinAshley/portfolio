@@ -13,7 +13,7 @@ import {
     addTodoItem,
     editTodoItem,
     deleteTodoItems,
-} from "@/app/lib/actions/todoList";
+} from "@/sharedComponents/lib/actions/todoList";
 
 const itemFormInputs: InputIf[] = [
     {
