@@ -1,13 +1,10 @@
 "use server";
 
-import { NextResponse } from "next/server";
 import { PrismaClient, TodoItem } from "@prisma/client";
-import { getIdParamFromRequest, handleError } from "@/sharedComponents/nextApi";
-import { getUserIdFromCookies } from "@/sharedComponents/nextApi/authentication";
-const prisma = new PrismaClient();
-import { auth } from "@/auth";
 import { FormValuesIf } from "@/sharedComponents/form";
 import { getAuthUser } from "./auth";
+
+const prisma = new PrismaClient();
 
 export async function getTodoItems() {
     const user = await getAuthUser();
