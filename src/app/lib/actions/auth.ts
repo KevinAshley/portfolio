@@ -9,22 +9,18 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function getAuthUser() {
-    try {
-        const session = await auth();
-        if (session?.user?.email) {
-            const user = await prisma.user.findUnique({
-                where: {
-                    email: session.user.email,
-                },
-            });
-            return {
-                user,
-            };
+    const session = await auth();
+    if (session?.user?.email) {
+        const user = await prisma.user.findUnique({
+            where: {
+                email: session.user.email,
+            },
+        });
+        if (user) {
+            return user;
         }
-        throw new Error("Invalid Auth User");
-    } catch (error) {
-        throw error;
     }
+    throw new Error("Invalid Auth User");
 }
 
 export async function userLogin(values: FormValuesIf) {
