@@ -63,6 +63,10 @@ export const groupedRoutes: RouteGroupIf[] = [
         label: "Portfolio",
         routes: portfolioRoutes,
     },
+];
+
+export const groupedRoutesForAdmins: RouteGroupIf[] = [
+    ...groupedRoutes,
     {
         label: "Admin",
         routes: adminRoutes,
