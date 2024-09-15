@@ -22,10 +22,6 @@ export const makePageTitle = (title: string) => {
     return `${siteName} | ${title}`;
 };
 
-const makePortfolioDescription = (title: string) => {
-    return `Portfolio | ${title} demo with Source Code`;
-};
-
 export const mainRoutes: RouteIf[] = [
     {
         pageTitle: makePageTitle("Home"),
@@ -40,45 +36,41 @@ export const mainRoutes: RouteIf[] = [
 export const portfolioRoutes: RouteIf[] = [
     {
         pageTitle: makePageTitle("Calculator"),
-        pageDescription: makePortfolioDescription("Calculator"),
+        pageDescription: "Basic mathematical calculator for quick calculations",
         label: "Calculator",
         path: "/calculator",
         icon: CalculateIcon,
         github: "https://github.com/KevinAshley/portfolio/blob/main/src/app/calculator/page.tsx",
-        description: "Basic mathematical calculator for quick calculations",
         component: Calculator,
         componentWrapper: SubPageWrapper,
     },
     {
         pageTitle: makePageTitle("Cricket Scoreboard"),
-        pageDescription: makePortfolioDescription("Calculator"),
+        pageDescription: `Scoreboard for the popular dart game known as "Cricket"`,
         label: "Cricket Scoreboard",
         path: "/cricket-scoreboard",
         icon: ScoreboardIcon,
         github: "https://github.com/KevinAshley/portfolio/blob/main/src/app/cricket-scoreboard/page.tsx",
-        description: "Scoreboard for the popular dart game known as 'Cricket'",
         component: CricketScoreboard,
         componentWrapper: SubPageWrapper,
     },
     {
         pageTitle: makePageTitle("Memory Game"),
-        pageDescription: makePortfolioDescription("Memory Game"),
+        pageDescription: "Test your memory with this card matching game",
         label: "Memory Game",
         path: "/memory-game",
         icon: PsychologyAltIcon,
         github: "https://github.com/KevinAshley/portfolio/blob/main/src/app/memory-game/page.tsx",
-        description: "Test your memory with this card matching game",
         component: MemoryGame,
         componentWrapper: SubPageWrapper,
     },
     {
         pageTitle: makePageTitle("Todo List"),
-        pageDescription: makePortfolioDescription("Todo List"),
+        pageDescription: "Todo List that reads and writes to the database",
         label: "Todo List",
         path: "/todo-list",
         icon: Checklist,
         github: "https://github.com/KevinAshley/portfolio/blob/main/src/app/todo-list/page.tsx",
-        description: "TODO List that reads and writes to the database",
         component: TodoList,
         componentWrapper: SubPageWrapper,
     },
