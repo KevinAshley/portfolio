@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -20,127 +20,84 @@ import BalanceIcon from "@mui/icons-material/Balance";
 import CastleIcon from "@mui/icons-material/Castle";
 import GithubLinkout from "@/components/githubLinkout";
 
-const uniqueCardsArray = [
-    {
-        icon: AcUnitIcon,
-        originalIndex: 0,
-    },
-    {
-        icon: AirportShuttleIcon,
-        originalIndex: 1,
-    },
-    {
-        icon: AnchorIcon,
-        originalIndex: 2,
-    },
-    {
-        icon: BackHandIcon,
-        originalIndex: 3,
-    },
-    {
-        icon: BalanceIcon,
-        originalIndex: 4,
-    },
-    {
-        icon: CastleIcon,
-        originalIndex: 5,
-    },
+const cardIcons = [
+    AcUnitIcon,
+    AirportShuttleIcon,
+    AnchorIcon,
+    BackHandIcon,
+    BalanceIcon,
+    CastleIcon,
 ];
 
-const combinedCardsArray = [...uniqueCardsArray, ...uniqueCardsArray];
+interface CardObjectIf {
+    id: number;
+    iconIndex: number;
+    selected: boolean;
+    matched: boolean;
+    sort: number;
+}
 
-const cardsArrayWithoutIcons = combinedCardsArray.map((thisCardObject) => {
-    const { originalIndex } = thisCardObject;
+const cardObjects: CardObjectIf[] = cardIcons.map((icon, index) => {
     return {
-        originalIndex,
+        id: -1,
+        iconIndex: index,
         selected: false,
         matched: false,
+        sort: 0,
     };
 });
 
-const Item = (props: any) => {
-    const { selected, matched, isFlashing, ...otherProps } = props;
+const fullDeckOfCards = [...cardObjects, ...cardObjects].map(
+    (cardObject, cardIndex) => ({
+        ...cardObject,
+        id: cardIndex,
+    })
+);
+
+const getShuffledDeck = () => {
+    return fullDeckOfCards
+        .map((card) => ({ ...card, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort);
+};
+
+interface CardIf extends CardObjectIf {
+    children: ReactNode;
+    isFlashing: boolean;
+}
+
+const Card = (props: CardIf) => {
+    const { selected, matched, isFlashing, children } = props;
     return (
         <Paper
             sx={{
-                //  use CSS vars here instead
-                // visibility: selected ? "visible" : "hidden",
                 backgroundColor:
                     isFlashing || selected
                         ? "var(--mui-palette-subtleHighlight)"
                         : undefined,
-                // : matched
-                // ? "var(--mui-palette-dark)"
-                // : "var(--mui-palette-light)",
-                // color: matched ? "var(--mui-palette-primary-main)" : undefined,
-                // ...theme.typography.body2,
                 padding: 4,
                 textAlign: "center",
                 cursor: matched ? "auto" : "pointer",
             }}
             elevation={matched ? 0 : 5}
-            {...otherProps}
-        />
+        >
+            {children}
+        </Paper>
     );
 };
 
-const findSelectedIndex = (cards: any[]) => {
-    const selectedCardIndex = cards.findIndex((card) => card.selected);
-    return selectedCardIndex;
-};
-
-const shuffleArray = (originalArray: any[]) => {
-    const shuffledArray = originalArray
-        .map((value) => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
-    return shuffledArray;
-};
-
 const MemoryGame = () => {
-    const [cards, setCards] = useState(shuffleArray(cardsArrayWithoutIcons));
+    const [cards, setCards] = useState<CardObjectIf[]>(fullDeckOfCards);
     const [flashing, setFlashing] = useState<number[]>([]);
     const [resetDialogIsOpen, setResetDialogIsOpen] = useState(false);
     const [movesCount, setMovesCount] = useState(0);
     const [winnerDialogOpen, setWinnerDialogOpen] = useState(false);
 
-    const handleCardClick = (params: any) => {
-        const { index } = params;
-        const newCards = JSON.parse(JSON.stringify(cards));
-        const thisCard = newCards[index];
-        const selectedCardIndex = findSelectedIndex(newCards);
-        const selectedCard = newCards[selectedCardIndex];
+    const toggleResetDialog = () => {
+        setResetDialogIsOpen((prev) => !prev);
+    };
 
-        // console.log("hoo", selectedCardIndex);
-        if (selectedCardIndex === -1) {
-            /// make a selection
-            newCards[index].selected = true;
-        } else if (selectedCardIndex === index) {
-            /// undo selection
-            newCards[selectedCardIndex].selected = false;
-        } else if (thisCard.originalIndex === selectedCard.originalIndex) {
-            /// correct selection
-            newCards[selectedCardIndex].selected = false;
-            newCards[selectedCardIndex].matched = true;
-            newCards[index].matched = true;
-            flashCardsByIndex([selectedCardIndex, index]);
-            setMovesCount(movesCount + 1);
-        } else {
-            /// wrong selection
-            newCards[selectedCardIndex].selected = false;
-            flashCardsByIndex([selectedCardIndex, index]);
-            setMovesCount(movesCount + 1);
-        }
-        setCards(newCards);
-    };
-    const handleClickOpen = () => {
-        setResetDialogIsOpen(true);
-    };
-    const handleClose = () => {
-        setResetDialogIsOpen(false);
-    };
     const resetAll = () => {
-        setCards(shuffleArray(cardsArrayWithoutIcons));
+        setCards(getShuffledDeck());
         setMovesCount(0);
         setWinnerDialogOpen(false);
     };
@@ -150,9 +107,12 @@ const MemoryGame = () => {
         setResetDialogIsOpen(false);
         resetAll();
     };
-    const flashCardsByIndex = (indexes: number[] = []) => {
-        setFlashing(indexes);
-    };
+
+    useEffect(() => {
+        setCards(getShuffledDeck());
+        // shuffle the deck when the page mounts
+    }, []);
+
     useEffect(() => {
         if (flashing.length) {
             setTimeout(() => {
@@ -177,29 +137,56 @@ const MemoryGame = () => {
         setWinnerDialogOpen(false);
     };
 
-    console.log("cards", cards);
-    // console.log("cardsMatched", matchedCards);
+    const handleCardClick = (clickedCard: CardObjectIf) => {
+        const newCards: CardObjectIf[] = [...cards];
+        const clickedCardIndex = newCards.findIndex(
+            (card) => card.id === clickedCard.id
+        );
+        const selectedCardIndex = newCards.findIndex((card) => !!card.selected);
+        const selectedCard = newCards[selectedCardIndex];
+
+        if (selectedCardIndex === -1) {
+            /// make a selection
+            newCards[clickedCardIndex].selected = true;
+        } else if (selectedCardIndex === clickedCardIndex) {
+            /// undo selection
+            newCards[selectedCardIndex].selected = false;
+        } else if (clickedCard.iconIndex === selectedCard.iconIndex) {
+            /// correct selection
+            newCards[selectedCardIndex].selected = false;
+            newCards[selectedCardIndex].matched = true;
+            newCards[clickedCardIndex].matched = true;
+            setFlashing([clickedCard.id, selectedCard.id]);
+            setMovesCount(movesCount + 1);
+        } else {
+            /// wrong selection
+            newCards[selectedCardIndex].selected = false;
+            setFlashing([clickedCard.id, selectedCard.id]);
+            setMovesCount(movesCount + 1);
+        }
+        setCards(newCards);
+    };
 
     return (
         <Box maxWidth="md" sx={{ margin: "auto" }}>
             <GithubLinkout />
             <Grid container spacing={2}>
-                {cards.map((thisCard, thisIndex) => {
-                    const { originalIndex, selected, matched } = thisCard;
-                    const isFlashing = flashing.includes(thisIndex);
-                    const Icon = uniqueCardsArray[originalIndex].icon;
+                {cards.map((thisCard) => {
+                    const { id, iconIndex, selected, matched } = thisCard;
+                    const isFlashing = flashing.includes(id);
+                    const Icon = cardIcons[iconIndex];
                     const handleThisCardClick = () => {
-                        handleCardClick({ index: thisIndex, originalIndex });
+                        handleCardClick(thisCard);
                     };
                     return (
                         <Grid
                             item
                             xs={4}
                             md={3}
-                            key={thisIndex}
+                            key={id}
                             onClick={!matched ? handleThisCardClick : undefined}
                         >
-                            <Item {...{ selected, matched, isFlashing }}>
+                            <Card {...{ ...thisCard, isFlashing }}>
                                 <Icon
                                     fontSize="large"
                                     sx={{
@@ -209,7 +196,7 @@ const MemoryGame = () => {
                                                 : "hidden",
                                     }}
                                 />
-                            </Item>
+                            </Card>
                         </Grid>
                     );
                 })}
@@ -230,13 +217,13 @@ const MemoryGame = () => {
                 <Button
                     variant="outlined"
                     color="error"
-                    onClick={handleClickOpen}
+                    onClick={toggleResetDialog}
                 >
                     Reset Game
                 </Button>
             </Box>
 
-            <Dialog open={resetDialogIsOpen} onClose={handleClose}>
+            <Dialog open={resetDialogIsOpen} onClose={toggleResetDialog}>
                 <DialogTitle>Confirmation</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -244,7 +231,7 @@ const MemoryGame = () => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={toggleResetDialog}>Cancel</Button>
                     <Button onClick={handleResetAndClose} variant="contained">
                         Yes
                     </Button>
