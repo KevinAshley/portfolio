@@ -5,11 +5,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-// import Input from "@mui/material/Input";
-// import ButtonGroup from "@mui/material/ButtonGroup";
-// import AddIcon from "@mui/icons-material/Add";
-// import RemoveIcon from "@mui/icons-material/Remove";
-// import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
+
 import Typography from "@mui/material/Typography";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -23,7 +19,7 @@ import BackHandIcon from "@mui/icons-material/BackHand";
 import BalanceIcon from "@mui/icons-material/Balance";
 import CastleIcon from "@mui/icons-material/Castle";
 import GithubLinkout from "@/components/githubLinkout";
-// const cardsArray = new Array(12).fill(0);
+
 const uniqueCardsArray = [
     {
         icon: AcUnitIcon,
@@ -67,20 +63,22 @@ const Item = (props: any) => {
     return (
         <Paper
             sx={{
+                //  use CSS vars here instead
                 // visibility: selected ? "visible" : "hidden",
                 backgroundColor:
                     isFlashing || selected
-                        ? "#1A2027"
-                        : matched
-                        ? "rgba(0,0,0,0)"
-                        : "#fff",
-                color: isFlashing || selected ? "#fff" : "#1A2027",
+                        ? "var(--mui-palette-subtleHighlight)"
+                        : undefined,
+                // : matched
+                // ? "var(--mui-palette-dark)"
+                // : "var(--mui-palette-light)",
+                // color: matched ? "var(--mui-palette-primary-main)" : undefined,
                 // ...theme.typography.body2,
                 padding: 4,
                 textAlign: "center",
                 cursor: matched ? "auto" : "pointer",
             }}
-            elevation={matched ? 0 : 1}
+            elevation={matched ? 0 : 5}
             {...otherProps}
         />
     );
