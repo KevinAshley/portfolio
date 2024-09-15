@@ -51,6 +51,15 @@ const boxStyles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    "& > *": {
+        opacity: "0.8",
+        transform: "scale(0.9)",
+        transition: "0.25s",
+    },
+    "&:hover > *": {
+        transform: "scale(1)",
+        opacity: "1",
+    },
 };
 
 const BrandIconsGrid = () => {
