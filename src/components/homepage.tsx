@@ -2,11 +2,7 @@
 
 import React, { Fragment } from "react";
 import Box from "@mui/material/Box";
-import { styled, css } from "@mui/material/styles";
-import Button from "@mui/material/Button";
-import Image from "next/image";
 import Typography from "@mui/material/Typography";
-import DotsCanvas from "@/components/dotsCanvas";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import sacramentoSkyline from "@images/pexels-photo-12027143-cropped.jpg";

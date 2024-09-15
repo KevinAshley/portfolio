@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allRoutes } from "@/routes";
 import { Fragment } from "react";
 
-export async function generateStaticParams(props: any) {
-    // console.log("allRoutes", allRoutes);
+export async function generateStaticParams() {
     return allRoutes.map((item) => ({
         pathArray: item.path.split("/"),
     }));
@@ -12,7 +10,7 @@ export async function generateStaticParams(props: any) {
 
 const PageSwitch = (props: any) => {
     const {
-        params: { pathArray },
+        params: { pathArray = [] },
     } = props;
     const pathname = `/${pathArray.join("/")}`;
     const matchingRoute = allRoutes.find((route) => {

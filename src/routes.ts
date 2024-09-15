@@ -18,7 +18,7 @@ import UsersList from "./components/usersList";
 
 const siteName = "Kevin Ashley";
 
-const makePageTitle = (title: string) => {
+export const makePageTitle = (title: string) => {
     return `${siteName} | ${title}`;
 };
 
