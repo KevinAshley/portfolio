@@ -4,8 +4,11 @@ import { Fragment } from "react";
 
 export async function generateStaticParams() {
     return allRoutes.map((item) => ({
-        pathArray: item.path.split("/"),
+        pathArray: item.path.substring(1).split("/"),
+        // trim off the leading slash, then split the segments
+        // to match the NextJS logic for dynamic routes
     }));
+    // The point is to force NextJS to build these pages
 }
 
 const PageSwitch = (props: any) => {
