@@ -6,7 +6,7 @@ import { PrismaClient } from "@prisma/client";
 import { createPasswordHash } from "@/sharedComponents/nextApi/authentication";
 const prisma = new PrismaClient();
 
-export const { auth, signIn, signOut } = NextAuth({
+export const { auth, handlers, signIn, signOut } = NextAuth({
     ...authConfig,
     providers: [
         Credentials({
@@ -24,11 +24,9 @@ export const { auth, signIn, signOut } = NextAuth({
                             email,
                         },
                     });
-
                     if (user) {
-                        const passwordsMatch =
-                            (await createPasswordHash(password)) ==
-                            user.password;
+                        const hashedPassword = createPasswordHash(password);
+                        const passwordsMatch = hashedPassword == user.password;
                         if (passwordsMatch) {
                             return {
                                 name: user.name,
