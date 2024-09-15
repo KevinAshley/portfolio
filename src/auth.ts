@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { DefaultSession } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { authConfig } from "./auth.config";
 import { z } from "zod";
@@ -33,6 +33,7 @@ export const { auth, signIn, signOut } = NextAuth({
                             return {
                                 name: user.name,
                                 email: user.email,
+                                admin: user.admin,
                             };
                         }
                     }
