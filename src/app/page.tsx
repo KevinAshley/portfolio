@@ -8,7 +8,7 @@ import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import DotsCanvas from "@/components/dotsCanvas";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/system/Container";
+import Container from "@mui/material/Container";
 import sacramentoSkyline from "@images/pexels-photo-12027143-cropped.jpg";
 
 const Home = () => {
