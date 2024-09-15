@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import sacramentoSkyline from "@images/pexels-photo-12027143-cropped.jpg";
+import BrandIconsGrid from "./brandIconsGrid";
 
 const Homepage = () => {
     return (
@@ -96,7 +97,7 @@ const Homepage = () => {
                         </Typography>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <Typography component={"p"}>&nbsp;</Typography>
+                        <BrandIconsGrid />
                     </Grid>
                 </Grid>
             </Container>

@@ -2,32 +2,35 @@
 
 import React from "react";
 import SvgIcon from "@mui/material/SvgIcon";
+import { SxProps, Theme } from "@mui/material/styles";
 
-const iconStyles = { fontSize: "100px", mx: "1rem", height: "40px" };
+interface LogoIf {
+    sx?: SxProps<Theme>;
+}
 
-export const MuiLogo = () => {
+export const MuiLogo = ({ sx }: LogoIf) => {
     return (
-        <SvgIcon sx={iconStyles} x="0px" y="0px" viewBox="0 -50 600 600">
+        <SvgIcon sx={sx} x="0px" y="0px" viewBox="0 -50 600 600">
             <path
                 d="m0 259.8v-259.8l225 129.9v86.6l-150-86.6v173.2z"
-                fill="#00b0ff"
+                fill="currentcolor"
             />
             <path
                 d="m225 129.9 225-129.9v259.8l-150 86.6-75-43.3 150-86.6v-86.6l-150 86.6z"
-                fill="#0081cb"
+                fill="currentcolor"
             />
-            <path d="m225 303.1v86.6l150 86.6v-86.6z" fill="#00b0ff" />
+            <path d="m225 303.1v86.6l150 86.6v-86.6z" fill="currentcolor" />
             <path
                 d="m375 476.3 225-129.9v-173.2l-75 43.3v86.6l-150 86.6zm150-346.4v-86.6l75-43.3v86.6z"
-                fill="#0081cb"
+                fill="currentcolor"
             />
         </SvgIcon>
     );
 };
 
-export const ReactLogo = () => {
+export const ReactLogo = ({ sx }: LogoIf) => {
     return (
-        <SvgIcon sx={iconStyles} viewBox="-11.5 -13.23174 23 26">
+        <SvgIcon sx={sx} viewBox="-11.5 -13.23174 23 26">
             <title>React Logo</title>
             <circle cx="0" cy="0" r="2.05" fill="#61dafb" />
             <g stroke="#61dafb" strokeWidth="1" fill="none">
@@ -39,9 +42,9 @@ export const ReactLogo = () => {
     );
 };
 
-export const NextLogo = () => {
+export const NextLogo = ({ sx }: LogoIf) => {
     return (
-        <SvgIcon sx={{ ...iconStyles }} viewBox="0 0 394 80">
+        <SvgIcon sx={sx} viewBox="0 0 394 80">
             <path
                 fill="currentcolor"
                 d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"
@@ -54,9 +57,9 @@ export const NextLogo = () => {
     );
 };
 
-export const VercelLogo = () => {
+export const VercelLogo = ({ sx }: LogoIf) => {
     return (
-        <SvgIcon sx={{ ...iconStyles }} viewBox="0 0 283 64">
+        <SvgIcon sx={sx} viewBox="0 0 283 64">
             <path
                 fill="currentcolor"
                 d="M141 16c-11 0-19 7-19 18s9 18 20 18c7 0 13-3 16-7l-7-5c-2 3-6 4-9 4-5 0-9-3-10-7h28v-3c0-11-8-18-19-18zm-9 15c1-4 4-7 9-7s8 3 9 7h-18zm117-15c-11 0-19 7-19 18s9 18 20 18c6 0 12-3 16-7l-8-5c-2 3-5 4-8 4-5 0-9-3-11-7h28l1-3c0-11-8-18-19-18zm-10 15c2-4 5-7 10-7s8 3 9 7h-19zm-39 3c0 6 4 10 10 10 4 0 7-2 9-5l8 5c-3 5-9 8-17 8-11 0-19-7-19-18s8-18 19-18c8 0 14 3 17 8l-8 5c-2-3-5-5-9-5-6 0-10 4-10 10zm83-29v46h-9V5h9zM37 0l37 64H0L37 0zm92 5-27 48L74 5h10l18 30 17-30h10zm59 12v10l-3-1c-6 0-10 4-10 10v15h-9V17h9v9c0-5 6-9 13-9z"
