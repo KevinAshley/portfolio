@@ -68,7 +68,7 @@ const theme = extendTheme(baseTheme, {
                 backgroundOverlayGradientTwo: "rgba(255,255,255,0.85)",
                 backgroundOverlayTextShadow: "0px 0px 30px white",
                 ribbon: "#efefef",
-                subtleHighlight: lighten(baseTheme.palette.primary.main, 0.9),
+                subtleHighlight: alpha(baseTheme.palette.primary.light, 0.05),
             },
         },
         dark: {
