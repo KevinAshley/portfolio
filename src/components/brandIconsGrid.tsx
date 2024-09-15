@@ -54,7 +54,7 @@ const boxStyles = {
     "& > *": {
         opacity: "0.8",
         transform: "scale(0.9)",
-        transition: "0.25s",
+        transition: "ease all 0.25s !important",
     },
     "&:hover > *": {
         transform: "scale(1)",
