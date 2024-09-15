@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Calculator from "@/components/calculator";
 
 const CalculatorPage = () => {
