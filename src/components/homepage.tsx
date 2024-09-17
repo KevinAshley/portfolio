@@ -7,6 +7,11 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import sacramentoSkyline from "@images/pexels-photo-12027143-cropped.jpg";
 import BrandIconsGrid from "./brandIconsGrid";
+import Image, { StaticImageData } from "next/image";
+import Avatar from "@mui/material/Avatar";
+import kevinGraySky from "@images/kevin-gray-sky.png";
+
+const avatarSize = "150";
 
 const Homepage = () => {
     return (
@@ -29,36 +34,52 @@ const Homepage = () => {
                 }}
             >
                 <Box
-                    maxWidth="md"
-                    textAlign={"center"}
                     sx={{
                         textShadow:
                             "var(--mui-palette-backgroundOverlayTextShadow)",
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "3rem",
+                        alignItems: "center",
                     }}
                 >
-                    <Typography
-                        variant="h1"
-                        component="h1"
-                        sx={{
-                            mt: 5,
-                            mb: 0.5,
-                        }}
-                    >
-                        Kevin Ashley
-                    </Typography>
-                    <Typography component="p" variant={"body1"}>
-                        Full Stack Web Developer
-                    </Typography>
-                    <Typography
-                        component="p"
-                        variant={"caption"}
-                        sx={{
-                            textShadow:
-                                "var(--mui-palette-backgroundOverlayTextShadow)",
-                        }}
-                    >
-                        Sacramento, CA
-                    </Typography>
+                    <Box>
+                        <Avatar
+                            sx={{
+                                border: `8px solid var(--mui-palette-primary-dark)`,
+                                height: `${avatarSize}px`,
+                                width: `${avatarSize}px`,
+                            }}
+                        >
+                            <Image
+                                src={kevinGraySky}
+                                alt="kevin gray sky"
+                                width={avatarSize}
+                                height={avatarSize}
+                            />
+                        </Avatar>
+                    </Box>
+                    <Box>
+                        <Typography
+                            variant="h1"
+                            component="h1"
+                            sx={
+                                {
+                                    // mt: 5,
+                                    // mb: 0.5,
+                                }
+                            }
+                        >
+                            Kevin Ashley
+                        </Typography>
+                        <Typography
+                            component="h2"
+                            variant={"h4"}
+                            sx={{ textTransform: "uppercase" }}
+                        >
+                            Full Stack Web Developer
+                        </Typography>
+                    </Box>
                 </Box>
             </Box>
 
@@ -76,27 +97,18 @@ const Homepage = () => {
                     // alignItems="center"
                     // sx={{ margin: "auto" }}
                 >
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} sx={{ textAlign: "center" }}>
                         <Typography
                             component={"h2"}
                             variant="h2"
                             marginBottom={2}
                         >
-                            About Me
+                            Technology
                         </Typography>
-                        <Typography component={"p"}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore
-                            eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia
-                            deserunt mollit anim id est laborum.
+                        <Typography component={"p"} mb={2}>
+                            The languages, libraries, frameworks, APIs and
+                            services.
                         </Typography>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
                         <BrandIconsGrid />
                     </Grid>
                 </Grid>

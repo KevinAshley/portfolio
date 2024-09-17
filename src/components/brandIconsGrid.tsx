@@ -65,14 +65,20 @@ const boxStyles = {
 const BrandIconsGrid = () => {
     return (
         <Box
-            sx={{
+            sx={(theme) => ({
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                [theme.breakpoints.up("md")]: {
+                    gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                },
+                [theme.breakpoints.up("lg")]: {
+                    gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+                },
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "2rem",
-                padding: "2rem",
-            }}
+                padding: "0 2rem",
+            })}
         >
             <Box sx={boxStyles}>
                 <MuiLogo

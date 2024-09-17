@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { MainLayout } from "@/sharedComponents/mainLayout";
 import theme from "../theme";
-import kevinGraySkyCropped from "@images/kevin-gray-sky-cropped.png";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 // Prevent fontawesome from adding its CSS since we did it manually above:
@@ -13,9 +12,5 @@ export default function RootLayout({
 }: Readonly<{
     children: ReactNode;
 }>) {
-    return (
-        <MainLayout theme={theme} websiteAvatar={kevinGraySkyCropped}>
-            {children}
-        </MainLayout>
-    );
+    return <MainLayout theme={theme}>{children}</MainLayout>;
 }
