@@ -10,6 +10,7 @@ import BrandIconsGrid from "./brandIconsGrid";
 import Button from "@mui/material/Button";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import PortfolioItemsGrid from "./portfolioItemsGrid";
 
 const Homepage = () => {
     return (
@@ -24,10 +25,7 @@ const Homepage = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    borderBottom:
-                        "1px solid var(--mui-palette-background-default)",
                     borderCollapse: "collapse",
-                    marginBottom: "3rem",
                     position: "relative",
                     textAlign: "center",
                 }}
@@ -87,20 +85,19 @@ const Homepage = () => {
                     </Box>
                 </Box>
             </Box>
-
-            <Container
-                sx={(theme) => ({
-                    maxWidth: "md",
-                    [theme.breakpoints.up("lg")]: {
-                        maxWidth: "lg",
-                    },
-                })}
+            <Box
+                sx={{
+                    background: "rgb(129 129 129 / 15%)",
+                }}
+                py={10}
             >
-                <Grid
-                    container
-                    spacing={2}
-                    // alignItems="center"
-                    // sx={{ margin: "auto" }}
+                <Container
+                    sx={(theme) => ({
+                        maxWidth: "md",
+                        [theme.breakpoints.up("lg")]: {
+                            maxWidth: "lg",
+                        },
+                    })}
                 >
                     <Grid item xs={12} sx={{ textAlign: "center" }}>
                         <Typography
@@ -108,16 +105,47 @@ const Homepage = () => {
                             variant="h2"
                             marginBottom={2}
                         >
-                            Technology
+                            Portfolio
                         </Typography>
-                        <Typography component={"p"} mb={2}>
-                            The languages, libraries, frameworks, APIs and
-                            services I know and love.
+                        <Typography component={"p"} mb={4}>
+                            Demo components and source code samples.
                         </Typography>
-                        <BrandIconsGrid />
+                        <PortfolioItemsGrid />
                     </Grid>
-                </Grid>
-            </Container>
+                </Container>
+            </Box>
+            <Box py={10}>
+                <Container
+                    sx={(theme) => ({
+                        maxWidth: "md",
+                        [theme.breakpoints.up("lg")]: {
+                            maxWidth: "lg",
+                        },
+                    })}
+                >
+                    <Grid
+                        container
+                        spacing={2}
+                        // alignItems="center"
+                        // sx={{ margin: "auto" }}
+                    >
+                        <Grid item xs={12} sx={{ textAlign: "center" }}>
+                            <Typography
+                                component={"h2"}
+                                variant="h2"
+                                marginBottom={2}
+                            >
+                                Technology
+                            </Typography>
+                            <Typography component={"p"} mb={4}>
+                                The languages, libraries, frameworks, APIs and
+                                services I know and love.
+                            </Typography>
+                            <BrandIconsGrid />
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Box>
         </Fragment>
     );
 };

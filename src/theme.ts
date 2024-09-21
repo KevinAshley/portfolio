@@ -66,8 +66,8 @@ const theme = extendTheme(responsiveTheme, {
                 },
                 // @ts-ignore
                 border: "rgba(0,0,0,0.1)",
-                backgroundOverlayGradientOne: "rgba(255, 189, 189, 0.5)",
-                backgroundOverlayGradientTwo: "rgba(255,255,255,0.85)",
+                backgroundOverlayGradientOne: "rgba(255,255,255,0.90)",
+                backgroundOverlayGradientTwo: "rgb(255 240 240 / 90%)",
                 backgroundOverlayTextShadow: "0px 0px 30px white",
                 ribbon: "#efefef",
                 subtleHighlight: alpha(baseTheme.palette.primary.light, 0.05),

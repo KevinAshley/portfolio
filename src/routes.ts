@@ -76,6 +76,15 @@ export const portfolioRoutes: RouteIf[] = [
     },
 ];
 
+export const portfolioRoutesWithoutComponents = portfolioRoutes.map(
+    (portfolioRoute) => {
+        const { component, componentWrapper, ...otherProps } = portfolioRoute;
+        return {
+            ...otherProps,
+        };
+    }
+);
+
 export const adminRoutes: RouteIf[] = [
     {
         pageTitle: makePageTitle("Users List"),
