@@ -8,6 +8,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
 import sacramentoSkyline from "@images/pexels-photo-12027143-cropped.jpg";
 import Grid from "@mui/material/Grid";
+import NextLink from "next/link";
 
 const PortfolioItemsGrid = () => {
     return (
@@ -17,7 +18,10 @@ const PortfolioItemsGrid = () => {
                     return (
                         <Grid item xs={12} sm={6} lg={3} key={routeIndex}>
                             <Card elevation={5}>
-                                <CardActionArea>
+                                <CardActionArea
+                                    component={NextLink}
+                                    href={portfolioRoute.path}
+                                >
                                     <CardMedia
                                         component="img"
                                         height="140"
@@ -45,10 +49,20 @@ const PortfolioItemsGrid = () => {
                                         justifyContent: "center",
                                     }}
                                 >
-                                    <Button size="small" color="primary">
+                                    <Button
+                                        size="small"
+                                        color="primary"
+                                        component={NextLink}
+                                        href={portfolioRoute.path}
+                                    >
                                         Demo
                                     </Button>
-                                    <Button size="small" color="primary">
+                                    <Button
+                                        size="small"
+                                        color="primary"
+                                        href={portfolioRoute.github as string}
+                                        target={"_blank"}
+                                    >
                                         Source
                                     </Button>
                                 </CardActions>
