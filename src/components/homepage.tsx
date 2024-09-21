@@ -7,11 +7,9 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import sacramentoSkyline from "@images/pexels-photo-12027143-cropped.jpg";
 import BrandIconsGrid from "./brandIconsGrid";
-import Image, { StaticImageData } from "next/image";
-import Avatar from "@mui/material/Avatar";
-import kevinGraySky from "@images/kevin-gray-sky.png";
-
-const avatarSize = "150";
+import Button from "@mui/material/Button";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Homepage = () => {
     return (
@@ -19,7 +17,7 @@ const Homepage = () => {
             <Box
                 sx={{
                     backgroundImage: `linear-gradient(180deg, var(--mui-palette-backgroundOverlayGradientOne), var(--mui-palette-backgroundOverlayGradientTwo)), url(${sacramentoSkyline.src})`,
-                    minHeight: "36vw",
+                    minHeight: "calc(100vh - 64px)",
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
                     padding: "4rem",
@@ -31,6 +29,7 @@ const Homepage = () => {
                     borderCollapse: "collapse",
                     marginBottom: "3rem",
                     position: "relative",
+                    textAlign: "center",
                 }}
             >
                 <Box
@@ -44,41 +43,47 @@ const Homepage = () => {
                     }}
                 >
                     <Box>
-                        <Avatar
-                            sx={{
-                                border: `8px solid var(--mui-palette-primary-dark)`,
-                                height: `${avatarSize}px`,
-                                width: `${avatarSize}px`,
-                            }}
-                        >
-                            <Image
-                                src={kevinGraySky}
-                                alt="kevin gray sky"
-                                width={avatarSize}
-                                height={avatarSize}
-                            />
-                        </Avatar>
-                    </Box>
-                    <Box>
-                        <Typography
-                            variant="h1"
-                            component="h1"
-                            sx={
-                                {
-                                    // mt: 5,
-                                    // mb: 0.5,
-                                }
-                            }
-                        >
+                        <Typography variant="h1" component="h1">
                             Kevin Ashley
                         </Typography>
                         <Typography
                             component="h2"
                             variant={"h4"}
                             sx={{ textTransform: "uppercase" }}
+                            mb={3}
                         >
                             Full Stack Web Developer
                         </Typography>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                gap: "1rem",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <Button
+                                variant={"outlined"}
+                                size={"large"}
+                                color={"inherit"}
+                                startIcon={<GitHubIcon />}
+                                href={"https://github.com/KevinAshley"}
+                                target={"_blank"}
+                            >
+                                Github
+                            </Button>
+                            <Button
+                                variant={"outlined"}
+                                size={"large"}
+                                color={"inherit"}
+                                startIcon={<LinkedInIcon />}
+                                href={
+                                    "https://www.linkedin.com/in/kevin-ashley-06272969/"
+                                }
+                                target={"_blank"}
+                            >
+                                LinkedIn
+                            </Button>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
@@ -107,7 +112,7 @@ const Homepage = () => {
                         </Typography>
                         <Typography component={"p"} mb={2}>
                             The languages, libraries, frameworks, APIs and
-                            services.
+                            services I know and love.
                         </Typography>
                         <BrandIconsGrid />
                     </Grid>
