@@ -21,7 +21,7 @@ const Homepage = () => {
                     minHeight: "calc(100vh - 64px)",
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
-                    padding: "4rem",
+                    padding: "4rem 2rem",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
