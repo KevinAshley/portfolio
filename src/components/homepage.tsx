@@ -16,9 +16,12 @@ const Homepage = () => {
     return (
         <Fragment>
             <Box
-                sx={{
+                sx={(theme) => ({
                     backgroundImage: `linear-gradient(180deg, var(--mui-palette-backgroundOverlayGradientOne), var(--mui-palette-backgroundOverlayGradientTwo)), url(${sacramentoSkyline.src})`,
-                    minHeight: "calc(100vh - 64px)",
+                    minHeight: "calc(100vh - 56px)",
+                    [theme.breakpoints.up("md")]: {
+                        minHeight: "calc(100vh - 64px)",
+                    },
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
                     padding: "4rem 2rem",
@@ -28,7 +31,7 @@ const Homepage = () => {
                     borderCollapse: "collapse",
                     position: "relative",
                     textAlign: "center",
-                }}
+                })}
             >
                 <Box
                     sx={{
@@ -50,7 +53,7 @@ const Homepage = () => {
                             sx={{ textTransform: "uppercase" }}
                             mb={3}
                         >
-                            Full Stack Web Developer
+                            Full Stack Web&nbsp;Developer
                         </Typography>
                         <Box
                             sx={{
