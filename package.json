@@ -7,13 +7,12 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "next:standalone_start": "HOSTNAME='0.0.0.0' node server.js",
-        "next:standalone_migrate_and_start": "npx prisma migrate deploy && npm run next:standalone_start",
         "docker:build_dev": "docker build -f Dockerfile.dev -t dev_image . ",
         "docker:run_dev": "docker run -dp 3000:3000 -w /app --mount type=bind,src='./',target=/app dev_image",
         "docker:dev": "npm run docker:build_dev && npm run docker:run_dev",
         "docker:build": "docker build -t production_image .",
         "docker:run": "docker run -dp 3000:3000 --mount type=bind,src='./prisma/database',target=/app/prisma/database production_image",
+        "docker:build_first_time": "docker build -f Dockerfile.prod_init -t production_image . ",
         "prisma:create_db": "npx prisma migrate dev --name create_db",
         "prisma:dangerously_unlock_dev_db_permissions": "chmod -R 777 prisma/database",
         "prisma:create_dev_db": "npm run prisma:create_db && npm run prisma:dangerously_unlock_dev_db_permissions",
@@ -21,7 +20,10 @@
         "prisma:update_prisma_client": "npx prisma generate",
         "prisma:migrate": "npm run prisma:create_migration_from_schema && npm run prisma:update_prisma_client",
         "prisma:dev_database_seed": "NODE_ENV=development npx prisma db seed",
-        "prisma:prod_database_seed": "NODE_ENV=production npx prisma db seed"
+        "prisma:prod_database_seed": "NODE_ENV=production npx prisma db seed",
+        "prod:start": "HOSTNAME='0.0.0.0' node server.js",
+        "prod:migrate_and_start": "npx prisma migrate deploy && npm run prod:start",
+        "prod:initialize_db": "npm run prisma:create_db"
     },
     "scriptsComments": {
         "docker_build_args: -t": "Assigns a name to the image",
