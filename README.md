@@ -52,11 +52,9 @@ npm run prisma:migrate
 Your DB migration has been created and ran against your DEV database, and your Prisma client has been updated.
 You WILL need to restart your DEV **_Docker_** container.
 
-<span style="color:red">
-TODO: handle Production migration.. I should be able to get this built into the Dockerfile
-</span>
+-   NOTE: Production migrations are handled by the production build
 
-## Deployment
+## Production Build
 
 To build a production docker image, run this:
 
@@ -69,6 +67,10 @@ You can test the production image locally with this:
 ```bash
 npm run docker:run
 ```
+
+-   NOTE: Pending migrations are deployed when the production container starts
+
+## Deployment
 
 AWS deployment scripts and instructions will be added at some point.
 For now, I am doing these manually via the AWS dashboard.
