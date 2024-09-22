@@ -4,6 +4,7 @@ import {
     experimental_extendTheme as extendTheme,
     createTheme,
     alpha,
+    lighten,
     responsiveFontSizes,
 } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
@@ -67,7 +68,10 @@ const theme = extendTheme(responsiveTheme, {
                 // @ts-ignore
                 border: "rgba(0,0,0,0.1)",
                 backgroundOverlayGradientOne: "rgba(255,255,255,0.90)",
-                backgroundOverlayGradientTwo: "rgb(255 240 240 / 90%)",
+                backgroundOverlayGradientTwo: alpha(
+                    lighten(baseTheme.palette.secondary.main, 0.95),
+                    0.9
+                ),
                 backgroundOverlayTextShadow: "0px 0px 30px white",
                 ribbon: "#efefef",
                 subtleHighlight: alpha(baseTheme.palette.primary.light, 0.05),
