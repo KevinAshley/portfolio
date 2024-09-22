@@ -1,0 +1,3 @@
+# do not copy the database file when building the image
+
+/prisma/database/

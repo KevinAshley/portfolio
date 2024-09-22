@@ -22,6 +22,9 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
+# Copy Prisma directory along with migrations
+COPY --from=builder /app/prisma/ ./prisma
+
 ENV NODE_ENV production
 
 RUN addgroup --system --gid 1001 nodejs
@@ -46,4 +49,4 @@ ENV PORT=3000
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD npm run next:standalone_start
+CMD npm run next:standalone_migrate_and_start

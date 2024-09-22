@@ -8,6 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "next:standalone_start": "HOSTNAME='0.0.0.0' node server.js",
+        "next:standalone_migrate_and_start": "npx prisma migrate deploy && npm run next:standalone_start",
         "docker:build_dev": "docker build -f Dockerfile.dev -t dev_image . ",
         "docker:run_dev": "docker run -dp 3000:3000 -w /app --mount type=bind,src='./',target=/app dev_image",
         "docker:dev": "npm run docker:build_dev && npm run docker:run_dev",
