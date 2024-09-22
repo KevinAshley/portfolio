@@ -16,6 +16,7 @@ async function main() {
                 password: await createPasswordHash(
                     process.env.ADMIN_TEMP_PASSWORD
                 ),
+                admin: true,
             },
         });
     } else {
