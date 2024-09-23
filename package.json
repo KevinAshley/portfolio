@@ -23,7 +23,7 @@
         "prisma:prod_database_seed": "NODE_ENV=production npx prisma db seed",
         "prod:start": "HOSTNAME='0.0.0.0' node server.js",
         "prod:migrate_and_start": "npx prisma migrate deploy && npm run prod:start",
-        "prod:initialize_db": "npm run prisma:create_db"
+        "prod:initialize_db": "npx prisma migrate deploy && npx prisma db seed"
     },
     "scriptsComments": {
         "docker_build_args: -t": "Assigns a name to the image",
