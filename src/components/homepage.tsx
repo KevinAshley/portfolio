@@ -88,12 +88,7 @@ const Homepage = () => {
                     </Box>
                 </Box>
             </Box>
-            <Box
-                sx={{
-                    background: "rgb(129 129 129 / 15%)",
-                }}
-                py={10}
-            >
+            <Box py={10}>
                 <Container
                     sx={(theme) => ({
                         maxWidth: "md",
@@ -117,7 +112,12 @@ const Homepage = () => {
                     </Grid>
                 </Container>
             </Box>
-            <Box py={10}>
+            <Box
+                py={10}
+                sx={{
+                    background: "rgb(129 129 129 / 15%)",
+                }}
+            >
                 <Container
                     sx={(theme) => ({
                         maxWidth: "md",
