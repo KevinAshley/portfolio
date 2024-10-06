@@ -29,7 +29,7 @@ COPY --from=builder /app/node_modules ./node_modules
 # Copy Prisma directory along with migrations
 COPY --from=builder /app/prisma/ ./prisma
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 COPY --from=builder /app/public ./public
 
@@ -44,4 +44,4 @@ ENV PORT=3000
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD npm run prod:migrate_and_start
+CMD ["npm", "run", "prod:migrate_and_start"]

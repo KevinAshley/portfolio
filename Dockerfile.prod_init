@@ -10,5 +10,5 @@ RUN npm ci
 COPY . .
 
 RUN npx prisma generate
-ENV NODE_ENV production
-CMD npm run prod:initialize_db
+ENV NODE_ENV=production
+CMD ["npm", "run", "prod:initialize_db"]
