@@ -10,7 +10,12 @@ interface LogoIf {
 
 export const MuiLogo = ({ sx }: LogoIf) => {
     return (
-        <SvgIcon sx={sx} x="0px" y="0px" viewBox="0 -50 600 600">
+        <SvgIcon
+            sx={sx || { fontSize: "3em" }}
+            x="0px"
+            y="0px"
+            viewBox="0 -50 600 600"
+        >
             <path
                 d="m0 259.8v-259.8l225 129.9v86.6l-150-86.6v173.2z"
                 fill="currentcolor"
@@ -44,7 +49,10 @@ export const ReactLogo = ({ sx }: LogoIf) => {
 
 export const NextLogo = ({ sx }: LogoIf) => {
     return (
-        <SvgIcon sx={sx} viewBox="0 0 394 80">
+        <SvgIcon
+            sx={sx || { fontSize: "5em", height: "100%" }}
+            viewBox="0 0 394 80"
+        >
             <path
                 fill="currentcolor"
                 d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"
