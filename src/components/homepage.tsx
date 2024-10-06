@@ -137,7 +137,7 @@ const Homepage = () => {
                         </Typography>
                         <Typography component={"p"} mb={4}>
                             Projects I have contributed to as a Software
-                            Engineer
+                            Engineer.
                         </Typography>
                         <ProjectsGrid />
                     </Grid>
