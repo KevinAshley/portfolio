@@ -24,6 +24,7 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Tooltip from "@mui/material/Tooltip";
 import { MuiLogo, NextLogo } from "@/components/logos";
+import Paper from "@mui/material/Paper";
 
 const items = [
     {
@@ -105,32 +106,38 @@ const BrandIconsGrid = () => {
                 return (
                     <Tooltip key={index} title={item.label}>
                         <Link
-                            sx={{
-                                textAlign: "center",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                "& > *": {
-                                    opacity: "0.8",
-                                    transform: "scale(0.9)",
-                                    transition: "ease all 0.25s !important",
-                                },
-                                "&:hover > *": {
-                                    transform: "scale(1)",
-                                    opacity: "1",
-                                },
-                            }}
                             href={item.link}
                             color={"inherit"}
                             target={"_blank"}
+                            sx={{ height: "100%" }}
                         >
-                            {!!IconComponent && <IconComponent />}
-                            {item.faIcon && (
-                                <FontAwesomeIcon
-                                    icon={item.faIcon}
-                                    size={iconSize}
-                                />
-                            )}
+                            <Paper
+                                elevation={5}
+                                sx={{
+                                    height: "100%",
+                                    padding: "1.25rem 2rem",
+                                    textAlign: "center",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    "& > *": {
+                                        transform: "scale(0.9)",
+                                        transition:
+                                            "ease transform 0.25s !important",
+                                    },
+                                    "&:hover > *": {
+                                        transform: "scale(1)",
+                                    },
+                                }}
+                            >
+                                {!!IconComponent && <IconComponent />}
+                                {item.faIcon && (
+                                    <FontAwesomeIcon
+                                        icon={item.faIcon}
+                                        size={iconSize}
+                                    />
+                                )}
+                            </Paper>
                         </Link>
                     </Tooltip>
                 );
