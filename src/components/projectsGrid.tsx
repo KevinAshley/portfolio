@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import { useEffect, useRef, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const projects = [
     {
@@ -109,6 +110,7 @@ const ProjectsGrid = () => {
                                         height: "300%",
                                         transform: "scale(0.33334)",
                                         border: "none",
+                                        opacity: "0.99",
                                         pointerEvents: "none",
                                         display: iframeIsRevealed
                                             ? "block"
@@ -116,6 +118,7 @@ const ProjectsGrid = () => {
                                     },
                                 }}
                             >
+                                {!iframeIsRevealed && <CircularProgress />}
                                 {loadIframes && (
                                     <iframe
                                         src={project.link}
