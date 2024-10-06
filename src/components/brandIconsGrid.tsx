@@ -23,9 +23,7 @@ import {
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Tooltip from "@mui/material/Tooltip";
-import { MuiLogo, NextLogo } from "./logos";
-
-const iconSize = "3x";
+import { MuiLogo, NextLogo } from "@/components/logos";
 
 const items = [
     {
@@ -83,21 +81,7 @@ const items = [
     },
 ];
 
-const boxStyles = {
-    textAlign: "center",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    "& > *": {
-        opacity: "0.8",
-        transform: "scale(0.9)",
-        transition: "ease all 0.25s !important",
-    },
-    "&:hover > *": {
-        transform: "scale(1)",
-        opacity: "1",
-    },
-};
+const iconSize = "3x";
 
 const BrandIconsGrid = () => {
     return (
@@ -114,7 +98,6 @@ const BrandIconsGrid = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "2rem",
-                padding: "0 2rem",
             })}
         >
             {items.map((item, index) => {
@@ -122,7 +105,21 @@ const BrandIconsGrid = () => {
                 return (
                     <Tooltip key={index} title={item.label}>
                         <Link
-                            sx={boxStyles}
+                            sx={{
+                                textAlign: "center",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                "& > *": {
+                                    opacity: "0.8",
+                                    transform: "scale(0.9)",
+                                    transition: "ease all 0.25s !important",
+                                },
+                                "&:hover > *": {
+                                    transform: "scale(1)",
+                                    opacity: "1",
+                                },
+                            }}
                             href={item.link}
                             color={"inherit"}
                             target={"_blank"}
