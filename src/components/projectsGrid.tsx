@@ -12,7 +12,7 @@ const projects = [
         description: (
             <span>
                 A website hosting company specializing in bespoke websites for
-                Real&nbsp;Estate&nbsp;Agents.
+                Real&nbsp;Estate&nbsp;Agents
             </span>
         ),
     },
@@ -23,7 +23,7 @@ const projects = [
         description: (
             <span>
                 A manufacturing and installation company specializing in door
-                replacement and closet organizers.
+                replacement and closet organizers
             </span>
         ),
     },
