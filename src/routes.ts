@@ -66,7 +66,8 @@ export const portfolioRoutes: RouteIf[] = [
     },
     {
         pageTitle: makePageTitle("Todo List"),
-        pageDescription: "Todo List that reads and writes to the database",
+        pageDescription:
+            "Todo List that reads from and writes to the database (C.R.U.D. demo)",
         label: "Todo List",
         path: "/todo-list",
         icon: Checklist,

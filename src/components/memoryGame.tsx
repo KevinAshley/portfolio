@@ -18,7 +18,7 @@ import AnchorIcon from "@mui/icons-material/Anchor";
 import BackHandIcon from "@mui/icons-material/BackHand";
 import BalanceIcon from "@mui/icons-material/Balance";
 import CastleIcon from "@mui/icons-material/Castle";
-import GithubLinkout from "@/components/githubLinkout";
+import PortfolioItemHeader from "@/components/portfolioItemHeader";
 
 const cardIcons = [
     AcUnitIcon,
@@ -169,7 +169,7 @@ const MemoryGame = () => {
 
     return (
         <Box maxWidth="md" sx={{ margin: "auto" }}>
-            <GithubLinkout />
+            <PortfolioItemHeader />
             <Grid container spacing={2}>
                 {cards.map((thisCard) => {
                     const { id, iconIndex, selected, matched } = thisCard;

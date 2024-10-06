@@ -5,7 +5,8 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import GithubLinkout from "@/components/githubLinkout";
+import PortfolioItemHeader from "@/components/portfolioItemHeader";
+
 const numKeysArray = new Array(9).fill(0);
 
 const Calculator = () => {
@@ -62,7 +63,7 @@ const Calculator = () => {
 
     return (
         <div>
-            <GithubLinkout />
+            <PortfolioItemHeader />
             <Paper
                 sx={{
                     padding: "1rem",

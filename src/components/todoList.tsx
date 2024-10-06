@@ -7,6 +7,8 @@ import {
     editTodoItem,
     deleteTodoItems,
 } from "@/sharedComponents/lib/actions/todoList";
+import { Fragment } from "react";
+import PortfolioItemHeader from "@/components/portfolioItemHeader";
 
 const itemFormInputs: InputIf[] = [
     {
@@ -43,17 +45,20 @@ const tableColumns: TableColumnIf[] = [
 
 const TodoList = () => {
     return (
-        <DataTableWithModals
-            tableHeading={"To-Do List"}
-            singularItemLabel={"To-Do Item"}
-            pluralItemsLabel={"To-Do Items"}
-            tableColumns={tableColumns}
-            deleteSelectedItems={deleteTodoItems}
-            addItem={addTodoItem}
-            editItem={editTodoItem}
-            itemFormInputs={itemFormInputs}
-            getItems={getTodoItems}
-        />
+        <Fragment>
+            <PortfolioItemHeader />
+            <DataTableWithModals
+                tableHeading={"To-Do List"}
+                singularItemLabel={"To-Do Item"}
+                pluralItemsLabel={"To-Do Items"}
+                tableColumns={tableColumns}
+                deleteSelectedItems={deleteTodoItems}
+                addItem={addTodoItem}
+                editItem={editTodoItem}
+                itemFormInputs={itemFormInputs}
+                getItems={getTodoItems}
+            />
+        </Fragment>
     );
 };
 
