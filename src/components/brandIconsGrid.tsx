@@ -21,10 +21,10 @@ import {
     faLinux,
 } from "@fortawesome/free-brands-svg-icons";
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
 import Tooltip from "@mui/material/Tooltip";
 import { MuiLogo, NextLogo } from "@/components/logos";
-import Paper from "@mui/material/Paper";
+import Card from "@mui/material/Card";
+import CardActionArea from "@mui/material/CardActionArea";
 
 const items = [
     {
@@ -108,14 +108,10 @@ const BrandIconsGrid = () => {
                 const IconComponent = item.iconComponent;
                 return (
                     <Tooltip key={index} title={item.label}>
-                        <Link
-                            href={item.link}
-                            color={"inherit"}
-                            target={"_blank"}
-                            sx={{ height: "100%" }}
-                        >
-                            <Paper
-                                elevation={5}
+                        <Card elevation={5} sx={{ height: "100%" }}>
+                            <CardActionArea
+                                href={item.link}
+                                target={"_blank"}
                                 sx={{
                                     height: "100%",
                                     padding: "1.25rem 2rem",
@@ -123,12 +119,12 @@ const BrandIconsGrid = () => {
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
-                                    "& > *": {
+                                    "& > svg": {
                                         transform: "scale(0.9)",
                                         transition:
                                             "ease transform 0.25s !important",
                                     },
-                                    "&:hover > *": {
+                                    "&:hover > svg": {
                                         transform: "scale(1)",
                                     },
                                 }}
@@ -140,8 +136,8 @@ const BrandIconsGrid = () => {
                                         size={iconSize}
                                     />
                                 )}
-                            </Paper>
-                        </Link>
+                            </CardActionArea>
+                        </Card>
                     </Tooltip>
                 );
             })}
