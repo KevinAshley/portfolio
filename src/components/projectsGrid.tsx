@@ -17,6 +17,7 @@ const projects = [
                 Real&nbsp;Estate&nbsp;Agents
             </span>
         ),
+        sandbox: "",
     },
     {
         label: "One Day Doors & Closets",
@@ -28,6 +29,7 @@ const projects = [
                 replacement and closet organizers
             </span>
         ),
+        sandbox: "allow-scripts allow-same-origin",
     },
 ];
 
@@ -62,15 +64,7 @@ const ProjectsGrid = () => {
     }, []);
 
     const handleIframeLoaded = (index: number) => {
-        if (index == 0) {
-            setTimeout(() => {
-                // This is an ugly hack, to avoid a scroll position jump when the
-                // chat widget inside the iHOUSEweb site loads in.
-                setRevealedIframes((prev) => [...prev, index]);
-            }, 7000);
-        } else {
-            setRevealedIframes((prev) => [...prev, index]);
-        }
+        setRevealedIframes((prev) => [...prev, index]);
     };
 
     return (
@@ -123,6 +117,7 @@ const ProjectsGrid = () => {
                                     <iframe
                                         src={project.link}
                                         onLoad={() => handleIframeLoaded(index)}
+                                        sandbox={project.sandbox}
                                     />
                                 )}
                                 <Box
