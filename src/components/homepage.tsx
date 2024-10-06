@@ -25,7 +25,7 @@ const Homepage = () => {
                     },
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
-                    padding: "4rem 2rem",
+                    padding: "4rem 1.5rem",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",

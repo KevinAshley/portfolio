@@ -89,7 +89,10 @@ const BrandIconsGrid = () => {
         <Box
             sx={(theme) => ({
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
+                gridTemplateColumns: "1fr 1fr",
+                [theme.breakpoints.up("sm")]: {
+                    gridTemplateColumns: "1fr 1fr 1fr",
+                },
                 [theme.breakpoints.up("md")]: {
                     gridTemplateColumns: "1fr 1fr 1fr 1fr",
                 },
