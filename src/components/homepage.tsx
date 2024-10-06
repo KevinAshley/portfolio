@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortfolioItemsGrid from "./portfolioItemsGrid";
+import ProjectsGrid from "./projectsGrid";
 
 const Homepage = () => {
     return (
@@ -118,6 +119,31 @@ const Homepage = () => {
                     background: "rgb(129 129 129 / 15%)",
                 }}
             >
+                <Container
+                    sx={(theme) => ({
+                        maxWidth: "md",
+                        [theme.breakpoints.up("lg")]: {
+                            maxWidth: "lg",
+                        },
+                    })}
+                >
+                    <Grid item xs={12} sx={{ textAlign: "center" }}>
+                        <Typography
+                            component={"h2"}
+                            variant="h2"
+                            marginBottom={2}
+                        >
+                            Projects
+                        </Typography>
+                        <Typography component={"p"} mb={4}>
+                            Projects I have contributed to as a Software
+                            Engineer
+                        </Typography>
+                        <ProjectsGrid />
+                    </Grid>
+                </Container>
+            </Box>
+            <Box py={10}>
                 <Container
                     sx={(theme) => ({
                         maxWidth: "md",
