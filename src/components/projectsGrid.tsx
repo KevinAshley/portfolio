@@ -29,7 +29,7 @@ const projects = [
                 replacement and closet organizers
             </span>
         ),
-        sandbox: "allow-scripts allow-same-origin",
+        sandbox: "",
     },
 ];
 
