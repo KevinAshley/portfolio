@@ -79,6 +79,15 @@ const ProjectsGrid = () => {
                                     width={640}
                                     loading={"lazy"}
                                 />
+                                <Box
+                                    sx={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        background: "rgba(0,0,0,0.1)",
+                                        borderBottom:
+                                            "1px solid rgba(0,0,0,0.05)",
+                                    }}
+                                />
                             </Box>
                             <CardContent>
                                 <Typography variant="h5" component="h3">
