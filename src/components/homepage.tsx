@@ -12,6 +12,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortfolioItemsGrid from "./portfolioItemsGrid";
 import ProjectsGrid from "./projectsGrid";
+import Divider from "@mui/material/Divider";
 
 const Homepage = () => {
     return (
@@ -48,14 +49,33 @@ const Homepage = () => {
                         <Typography variant="h1" component="h1">
                             Kevin Ashley
                         </Typography>
-                        <Typography
-                            component="h2"
-                            variant={"h4"}
-                            sx={{ textTransform: "uppercase" }}
-                            mb={3}
-                        >
-                            Full Stack Web&nbsp;Developer
-                        </Typography>
+                        <Box display={"flex"} justifyContent={"center"}>
+                            <Box display={"flex"} flexDirection={"column"}>
+                                <Typography
+                                    component="p"
+                                    variant={"h4"}
+                                    sx={{ textTransform: "uppercase" }}
+                                >
+                                    Software Engineer
+                                </Typography>
+                                <Divider
+                                    sx={{
+                                        borderBottomWidth: "2px",
+                                        marginBottom: "3px",
+                                        borderColor: "inherit",
+                                    }}
+                                />
+                                <Typography
+                                    component="p"
+                                    variant={"h5"}
+                                    sx={{ textTransform: "uppercase" }}
+                                    mb={3}
+                                >
+                                    Full Stack Web&nbsp;Developer
+                                </Typography>
+                            </Box>
+                        </Box>
+
                         <Box
                             sx={{
                                 display: "flex",
