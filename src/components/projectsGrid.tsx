@@ -3,14 +3,16 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
-import { useEffect, useRef, useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
+import ihousewebHomepageImage from "@images/ihouseweb-homepage.jpg";
+import oddcHomepageImage from "@images/oddc-homepage.jpg";
+import Image from "next/image";
 
 const projects = [
     {
         label: "iHOUSEweb",
         caption: "2015 - 2023",
         link: "https://www.ihouseweb.com",
+        image: ihousewebHomepageImage,
         description: (
             <span>
                 A website hosting company specializing in bespoke websites for
@@ -23,6 +25,7 @@ const projects = [
         label: "One Day Doors & Closets",
         caption: "2023 - Present",
         link: "https://onedaydoorsandclosets.com",
+        image: oddcHomepageImage,
         description: (
             <span>
                 A manufacturing and installation company specializing in door
@@ -34,39 +37,6 @@ const projects = [
 ];
 
 const ProjectsGrid = () => {
-    const [loadIframes, setLoadIframes] = useState(false);
-    const [revealedIframes, setRevealedIframes] = useState<number[]>([]);
-    const observerRef = useRef();
-
-    useEffect(() => {
-        // We don't want the iframes to load until they enter the viewport!
-        const callbackFunction = (entries: any) => {
-            const [entry] = entries;
-            const isIntersecting = entry.isIntersecting;
-            if (isIntersecting) {
-                setLoadIframes(true);
-            }
-        };
-        const observedElement = observerRef.current;
-        const observer = new IntersectionObserver(callbackFunction, {
-            root: null,
-            rootMargin: "1px",
-            threshold: 0.1,
-        });
-        if (observedElement) {
-            observer.observe(observedElement);
-        }
-        return () => {
-            if (observedElement) {
-                observer.unobserve(observedElement);
-            }
-        };
-    }, []);
-
-    const handleIframeLoaded = (index: number) => {
-        setRevealedIframes((prev) => [...prev, index]);
-    };
-
     return (
         <Box
             sx={(theme) => ({
@@ -79,10 +49,8 @@ const ProjectsGrid = () => {
                 justifyContent: "center",
                 gap: "2rem",
             })}
-            ref={observerRef}
         >
             {projects.map((project, index) => {
-                const iframeIsRevealed = revealedIframes.includes(index);
                 return (
                     <Card elevation={5} key={index} sx={{ height: "100%" }}>
                         <CardActionArea
@@ -92,45 +60,25 @@ const ProjectsGrid = () => {
                         >
                             <Box
                                 sx={{
-                                    aspectRatio: "2 / 1",
+                                    aspectRatio: "16 / 9",
                                     textAlign: "center",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
                                     position: "relative",
-                                    "& > iframe": {
-                                        position: "absolute",
-                                        width: "300%",
-                                        height: "300%",
-                                        transform: "scale(0.33334)",
-                                        border: "none",
-                                        opacity: "0.99",
-                                        pointerEvents: "none",
-                                        display: iframeIsRevealed
-                                            ? "block"
-                                            : "none",
+                                    "> img": {
+                                        width: "100%",
+                                        height: "100%",
                                     },
                                 }}
                             >
-                                {!iframeIsRevealed && <CircularProgress />}
-                                {loadIframes && (
-                                    <iframe
-                                        src={project.link}
-                                        onLoad={() => handleIframeLoaded(index)}
-                                        sandbox={project.sandbox}
-                                    />
-                                )}
-                                <Box
-                                    // covers the iframe
-                                    sx={{
-                                        position: "absolute",
-                                        inset: 0,
-                                        background:
-                                            "linear-gradient(180deg,  transparent, rgba(0,0,0,0.3))",
-                                    }}
-                                >
-                                    &nbsp;
-                                </Box>
+                                <Image
+                                    src={project.image}
+                                    alt={`webpage image`}
+                                    height={360}
+                                    width={640}
+                                    loading={"lazy"}
+                                />
                             </Box>
                             <CardContent>
                                 <Typography variant="h5" component="h3">
