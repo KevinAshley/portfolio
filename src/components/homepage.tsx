@@ -6,6 +6,11 @@ import PortfolioItemsGrid from "./homepage/portfolioItemsGrid";
 import ProjectsGrid from "./homepage/projectsGrid";
 import HomepageBanner from "./homepage/homepageBanner";
 import { PaddedBox, ResponsiveContainer } from "./homepage/layout";
+import Box from "@mui/material/Box";
+
+const SectionBox = ({ children }: { children: ReactNode | ReactNode[] }) => {
+    return <Box sx={{ textAlign: "center" }}>{children}</Box>;
+};
 
 const SectionHeading = ({ children }: { children: string }) => {
     return (
@@ -29,13 +34,13 @@ const Homepage = () => {
             <HomepageBanner />
             <PaddedBox>
                 <ResponsiveContainer>
-                    <Grid item xs={12} sx={{ textAlign: "center" }}>
+                    <SectionBox>
                         <SectionHeading>Portfolio</SectionHeading>
                         <SectionDescription>
                             Demo components and source code samples.
                         </SectionDescription>
                         <PortfolioItemsGrid />
-                    </Grid>
+                    </SectionBox>
                 </ResponsiveContainer>
             </PaddedBox>
             <PaddedBox
@@ -44,26 +49,26 @@ const Homepage = () => {
                 }}
             >
                 <ResponsiveContainer>
-                    <Grid item xs={12} sx={{ textAlign: "center" }}>
+                    <SectionBox>
                         <SectionHeading>Projects</SectionHeading>
                         <SectionDescription>
                             Projects I have contributed to as a Software
                             Engineer.
                         </SectionDescription>
                         <ProjectsGrid />
-                    </Grid>
+                    </SectionBox>
                 </ResponsiveContainer>
             </PaddedBox>
             <PaddedBox>
                 <ResponsiveContainer>
-                    <Grid item xs={12} sx={{ textAlign: "center" }}>
+                    <SectionBox>
                         <SectionHeading>Technology</SectionHeading>
                         <SectionDescription>
                             The languages, libraries, frameworks, APIs and
                             services I know and love.
                         </SectionDescription>
                         <BrandIconsGrid />
-                    </Grid>
+                    </SectionBox>
                 </ResponsiveContainer>
             </PaddedBox>
         </Fragment>
