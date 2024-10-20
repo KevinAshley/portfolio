@@ -1,6 +1,5 @@
 import React, { Fragment, ReactNode } from "react";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
 import BrandIconsGrid from "./homepage/brandIconsGrid";
 import PortfolioItemsGrid from "./homepage/portfolioItemsGrid";
 import ProjectsGrid from "./homepage/projectsGrid";
