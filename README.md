@@ -1,33 +1,46 @@
-This is a **_Next.js_** website that runs on **_Docker_**.
+This is a **_Next.js_** website that runs in a **_Docker_** container, deployed on **_AWS_** using the **_ECS_** service.
 
-While the default **_Next.js_** scripts work just fine,
-my preference is to run **_Docker_** for development.
+Before starting, make sure you have **_Docker Desktop_** (or at least **_Docker_**) installed.
 
-## First-time Local Setup
+## First-time Setup
 
 1. Create a .env file at the root. For cloned projects, copy .env.example
 
-2. Set up the SQLite Database
+    - Update all .env values to taste before proceeding to next step
 
-    Assuming this is a cloned repo with no DB already configured, do the following:
+2. Initialize the SQLite Database
 
-    - Delete any existings migrations:
+    - If you are cloning the repo for a new project, you'll probably want to...
+
+        - Delete any existings migrations:
+
+            ```bash
+            rm -rf /prisma/migrations
+            ```
+
+        - Review / adjust the schema.prisma file to suit your needs
+
+    - Build the "Initializer" container with this command:
 
         ```bash
-        rm -rf /prisma/migrations
+        npm run docker:build_first_time
         ```
 
-    - Create the SQLite database
+    - Then, run the "Initializer" container (which creates and seeds the DB) with this command:
 
         ```bash
-        npm run prisma:create_dev_db
+        npm run docker:run
         ```
+
+        Once the database is created and seeded, the docker container will stop.
+
+    Q: Why do I use a special Docker container to create the DB?
+
+    A: Because it works for both local development AND your first deploy to AWS. Simple and consistent.
 
 ## Development
 
-First, make sure you have **_Docker Desktop_** installed.
-
-Then run this command from the project root:
+For local development, run this command from the project root:
 
 ```bash
 npm run docker:dev
@@ -37,9 +50,9 @@ That's it! You should now have a new **_Docker_** image and a new **_Docker_** c
 
 [http://localhost:3000](http://localhost:3000)
 
-Hot reloading and everything should work just as well as if you were running the **_Next.js_** dev script.
+Hot reloading and everything should work just as if you were running the **_Next.js_** dev script.
 
-Use **_Docker Desktop_** to review the logs, execute terminal commands, stop, start, reboot, etc.
+I use **_Docker Desktop_** to review the logs, execute terminal commands, stop, start, reboot, etc.
 
 ## Database Migrations
 
@@ -52,7 +65,7 @@ npm run prisma:migrate
 Your DB migration has been created and ran against your DEV database, and your Prisma client has been updated.
 You WILL need to restart your DEV **_Docker_** container.
 
--   NOTE: Production migrations are handled by the production build
+\*\*\* NOTE: Production migrations are handled by the production build
 
 ## Production Build
 
@@ -68,9 +81,21 @@ You can test the production image locally with this:
 npm run docker:run
 ```
 
--   NOTE: Pending migrations are deployed when the production container starts
+\*\*\* NOTE: As previously mentioned, pending migrations are ran automatically when the production container starts.
+So simply build and deploy your new container to AWS (or wherever) and the migrations will have run.
 
 ## Deployment
 
-AWS deployment scripts and instructions will be added at some point.
-For now, I am doing these manually via the AWS dashboard.
+For AWS deployments, my process is this:
+
+1. Build the production image (as described above)
+2. Tag and push the container to the **_AWS_** Elastic Container Registry (ECR)
+    - (The push commands are provided by the ECR interface)
+3. Update the **_AWS_** "Task Definition" to pick up the new image
+4. Update the **_AWS_** "Service" to use the new "Task Definition"
+
+Of course, this assumes you already configured your "cluster" and "service" via **_ECS_**.
+
+IMPORTANT: To have a persistent database, your task definition needs to have a "bind mount" to **_AWS_** Elastic File System (EFS).
+
+I intend to detail all of this at some later date.
