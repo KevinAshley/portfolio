@@ -1,28 +1,19 @@
-"use client";
-
 import React, { Fragment } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
 import BrandIconsGrid from "./brandIconsGrid";
 import PortfolioItemsGrid from "./portfolioItemsGrid";
 import ProjectsGrid from "./projectsGrid";
 import HomepageBanner from "./homepageBanner";
+import ResponsiveContainer from "./responsiveContainer";
 
 const Homepage = () => {
     return (
         <Fragment>
             <HomepageBanner />
             <Box py={10}>
-                <Container
-                    sx={(theme) => ({
-                        maxWidth: "md",
-                        [theme.breakpoints.up("lg")]: {
-                            maxWidth: "lg",
-                        },
-                    })}
-                >
+                <ResponsiveContainer>
                     <Grid item xs={12} sx={{ textAlign: "center" }}>
                         <Typography
                             component={"h2"}
@@ -36,7 +27,7 @@ const Homepage = () => {
                         </Typography>
                         <PortfolioItemsGrid />
                     </Grid>
-                </Container>
+                </ResponsiveContainer>
             </Box>
             <Box
                 py={10}
@@ -44,14 +35,7 @@ const Homepage = () => {
                     background: "rgb(129 129 129 / 15%)",
                 }}
             >
-                <Container
-                    sx={(theme) => ({
-                        maxWidth: "md",
-                        [theme.breakpoints.up("lg")]: {
-                            maxWidth: "lg",
-                        },
-                    })}
-                >
+                <ResponsiveContainer>
                     <Grid item xs={12} sx={{ textAlign: "center" }}>
                         <Typography
                             component={"h2"}
@@ -66,17 +50,10 @@ const Homepage = () => {
                         </Typography>
                         <ProjectsGrid />
                     </Grid>
-                </Container>
+                </ResponsiveContainer>
             </Box>
             <Box py={10}>
-                <Container
-                    sx={(theme) => ({
-                        maxWidth: "md",
-                        [theme.breakpoints.up("lg")]: {
-                            maxWidth: "lg",
-                        },
-                    })}
-                >
+                <ResponsiveContainer>
                     <Grid
                         container
                         spacing={2}
@@ -98,7 +75,7 @@ const Homepage = () => {
                             <BrandIconsGrid />
                         </Grid>
                     </Grid>
-                </Container>
+                </ResponsiveContainer>
             </Box>
         </Fragment>
     );
