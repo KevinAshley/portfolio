@@ -19,8 +19,6 @@
         "prisma:create_migration_from_schema": "npx prisma migrate dev",
         "prisma:update_prisma_client": "npx prisma generate",
         "prisma:migrate": "npm run prisma:create_migration_from_schema && npm run prisma:update_prisma_client",
-        "prisma:dev_database_seed": "NODE_ENV=development npx prisma db seed",
-        "prisma:prod_database_seed": "NODE_ENV=production npx prisma db seed",
         "prod:start": "HOSTNAME='0.0.0.0' node server.js",
         "prod:migrate_and_start": "npx prisma migrate deploy && npm run prod:start",
         "prod:initialize_db": "npx prisma migrate deploy && npx prisma db seed"
