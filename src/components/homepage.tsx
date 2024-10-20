@@ -27,6 +27,10 @@ const SectionDescription = ({ children }: { children: string }) => {
     );
 };
 
+const altBoxStyles = {
+    background: "rgb(129 129 129 / 15%)",
+};
+
 const Homepage = () => {
     return (
         <Fragment>
@@ -42,11 +46,7 @@ const Homepage = () => {
                     </SectionBox>
                 </ResponsiveContainer>
             </PaddedBox>
-            <PaddedBox
-                sx={{
-                    background: "rgb(129 129 129 / 15%)",
-                }}
-            >
+            <PaddedBox sx={altBoxStyles}>
                 <ResponsiveContainer>
                     <SectionBox>
                         <SectionHeading>Projects</SectionHeading>
